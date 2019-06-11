@@ -4,32 +4,36 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
+    <%= f.input :first_name, label: "Prénom", required: false, autofocus: true, placeholder: current_user.first_name %>
+    <%= f.input :last_name, label: "Nom de Famille", required: false, autofocus: true, placeholder: current_user.last_name %>
+    <%= f.input :email, label: "Adresse électronique principale", required: true, autofocus: true, placeholder: current_user.email, input_html: { autocomplete: "email" } %>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
     <% end %>
 
     <%= f.input :password,
-                hint: "leave it blank if you don't want to change it",
+                label: "Nouveau mot de passe",
+                hint: "laisser vide si vous ne souhaitez pas le changer",
                 required: false,
+                autofocus: true,
                 input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
+
     <%= f.input :current_password,
-                hint: "we need your current password to confirm your changes",
+                label: "Mot de passe actuel",
+                hint: "Valider vos modifications avec votre mot de passe actuel",
                 required: true,
+                autofocus: true,
+                placeholder: "••••••",
                 input_html: { autocomplete: "current-password" } %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Update" %>
+    <%= f.button :submit, "Mettre à jour" %>
   </div>
 <% end %>
 
-<h3>Cancel my account</h3>
 
-<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+<p> Pas content ? <%= link_to "Supprimer mon compte", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
 <%= link_to "Back", :back %>
