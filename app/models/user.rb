@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :omniauthable, omniauth_providers: [:google_oahth2]
+         :omniauthable, omniauth_providers: [:google_oauth2]
 
   def self.from_omniauth(access_token)
     data = access_token.info
@@ -11,7 +11,7 @@ class User < ApplicationRecord
 
     unless user
       password = Devise.friendly_token[0,20]
-      user = User.create(name: data["name"], email: data["email"],
+      user = User.create(first_name: data["first_name"], last_name: data["last_name"], email: data["email"],
         password: password, password_confirmation: password
       )
     end
