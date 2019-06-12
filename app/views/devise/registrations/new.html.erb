@@ -1,5 +1,3 @@
-<h2>Sign up</h2>
-
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= f.error_notification %>
 
@@ -27,4 +25,77 @@
   </div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container sign-up-container">
+
+  <div class="wrapper">
+    <div class="signup-title">
+      <h1>Créer votre espace La Frech Pousse</h1>
+        <p>Vous faites déjà parti de la communauté ? <%= link_to "Accéder à mon compte",new_user_session_path %> </p>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6 social-media-btns flex-content">
+        <div class="social-media-content">
+          <p>Bla bla bla</p>
+        </div>
+      </div>
+
+        <div class="col-sm-6 sign-up-form flex-content">
+          <div class="sign-up-content">
+
+
+          <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <%= f.error_notification %>
+
+            <div class="form-inputs">
+              <%= f.input :first_name, label: "Prénom :", required: true, autofocus: true, placeholder: "Tyrion" %>
+              <%= f.input :last_name, label: "Nom de Famille :", required: true, autofocus: true, placeholder: "Lannister" %>
+              <%= f.input :email,
+                          label: "Adresse électronique principale :",
+                          required: true,
+                          autofocus: true,
+                          placeholder: "tyrion.lannister@lafrenchpousse.fr",
+                          input_html: { autocomplete: "email" }%>
+              <%= f.input :password,
+                          label: "Mot de Passe :",
+                          required: true,
+                          autofocus: true,
+                          placeholder: "••••••",
+                          hint: ("#{@minimum_password_length} caractères minimum" if @minimum_password_length),
+                          input_html: { autocomplete: "new-password" } %>
+
+            </div>
+
+            <div class="form-actions">
+              <%= f.button :submit, "Rejoindre La French Pousse" %>
+            </div>
+          <% end %>
+
+
+
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+
