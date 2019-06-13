@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.6.3'
 
+gem 'dotenv-rails', groups: [:development, :test]
 gem 'omniauth-google-oauth2'
 
 gem 'bootsnap', require: false
