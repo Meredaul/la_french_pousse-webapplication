@@ -26,6 +26,12 @@
                 autofocus: true,
                 placeholder: "••••••",
                 input_html: { autocomplete: "current-password" } %>
+    <% if current_user.photo.url.present? %>
+      <%= image_tag(current_user.photo.url) %>
+      <%= f.input :remove_photo, as: :boolean, label: "Changer ma photo de profil" %>
+    <% end %>
+    <%= f.input :photo %>
+    <%= f.input :photo_cache, as: :hidden %>
   </div>
 
   <div class="form-actions">
