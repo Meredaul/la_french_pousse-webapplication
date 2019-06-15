@@ -1,12 +1,21 @@
 <div>
-  <h1>Pages#home</h1>
-  <p>Bla bla bla</p>
-  <p><%= current_user.present? %></p>
-  <p><%= current_user.first_name %></p>
-  <p><%= current_user.last_name %></p>
-  <p><%= current_user.town %></p>
-  <p><%= current_user %></p>
-  <p><%= current_user.latitude %></p>
+  <div class="row">
+    <div class="col-6">
+      <h1>Pages#home</h1>
+      <p>Bla bla bla</p>
+      <p><%= current_user.present? %></p>
+      <p><%= current_user.first_name %></p>
+      <p><%= current_user.last_name %></p>
+      <p><%= current_user.town %></p>
+      <p><%= current_user %></p>
+      <p><%= current_user.latitude %></p>
+    </div>
+
+    <div class="col-6">
+      <div id="map" style="width:100%; height: 80%;" data-markers="<%= @personnal_town_marker.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+    </div>
+  </div>
+
 </div>
 
 <div class = "container">
