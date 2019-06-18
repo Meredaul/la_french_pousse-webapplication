@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_18_073059) do
+ActiveRecord::Schema.define(version: 2019_06_18_075452) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "fait_partis", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "pousse_id"
+    t.boolean "admin"
+    t.string "statut"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pousse_id"], name: "index_fait_partis_on_pousse_id"
+    t.index ["user_id"], name: "index_fait_partis_on_user_id"
+  end
 
   create_table "pousses", force: :cascade do |t|
     t.string "nom"
@@ -52,4 +63,6 @@ ActiveRecord::Schema.define(version: 2019_06_18_073059) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "fait_partis", "pousses", column: "pousse_id"
+  add_foreign_key "fait_partis", "users"
 end
