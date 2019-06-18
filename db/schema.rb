@@ -17,12 +17,12 @@ ActiveRecord::Schema.define(version: 2019_06_18_075452) do
 
   create_table "fait_partis", force: :cascade do |t|
     t.bigint "user_id"
-    t.bigint "pousse_id"
+    t.bigint "pouss_id"
     t.boolean "admin"
     t.string "statut"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["pousse_id"], name: "index_fait_partis_on_pousse_id"
+    t.index ["pouss_id"], name: "index_fait_partis_on_pouss_id"
     t.index ["user_id"], name: "index_fait_partis_on_user_id"
   end
 
@@ -63,6 +63,6 @@ ActiveRecord::Schema.define(version: 2019_06_18_075452) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "fait_partis", "pousses", column: "pousse_id"
+  add_foreign_key "fait_partis", "pousses"
   add_foreign_key "fait_partis", "users"
 end
