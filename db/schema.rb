@@ -10,26 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_18_102151) do
+ActiveRecord::Schema.define(version: 2019_06_18_075452) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "companies", force: :cascade do |t|
-  end
-
-  create_table "fait_partis", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "pouss_id"
-    t.boolean "admin"
-    t.string "statut"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["pouss_id"], name: "index_fait_partis_on_pouss_id"
-    t.index ["user_id"], name: "index_fait_partis_on_user_id"
-  end
-
-  create_table "pousses", force: :cascade do |t|
     t.string "nom"
     t.string "presentation"
     t.string "photo"
@@ -40,6 +26,18 @@ ActiveRecord::Schema.define(version: 2019_06_18_102151) do
     t.integer "compteur_passage"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "participations", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "pouss_type"
+    t.bigint "pouss_id"
+    t.boolean "admin"
+    t.string "statut"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pouss_type", "pouss_id"], name: "index_participations_on_pouss_type_and_pouss_id"
+    t.index ["user_id"], name: "index_participations_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -66,6 +64,5 @@ ActiveRecord::Schema.define(version: 2019_06_18_102151) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "fait_partis", "pousses"
-  add_foreign_key "fait_partis", "users"
+  add_foreign_key "participations", "users"
 end

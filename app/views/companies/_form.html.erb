@@ -1,12 +1,24 @@
-
 <%= simple_form_for(@company) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
+
+    <%= f.input :nom, label: "Nom :", required: true, autofocus: true, placeholder: "Tyrion" %>
+
+    <%= f.input :presentation, label: "Presentation :", required: true, autofocus: true, placeholder: "Lannister" %>
+
+    <%= f.input :adresse, label: "Adresse :", required: true, autofocus: true, placeholder: "King's Landing", input_html: {id: :adresse} %>
+
+    <%= f.input :email, label: "Adresse électronique principale :", required: true, autofocus: true, placeholder: "tyrion.lannister@lafrenchpousse.fr", input_html: { autocomplete: "email" }%>
+
+    <%= f.input :photo %>
+    <%= f.input :photo_cache, as: :hidden %>
+
   </div>
 
   <div class="form-actions">
     <%= f.button :submit %>
   </div>
 <% end %>
+

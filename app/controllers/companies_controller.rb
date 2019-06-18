@@ -25,9 +25,17 @@ class CompaniesController < ApplicationController
   # POST /companies.json
   def create
     @company = Company.new(company_params)
-
+#    @company.users << current_user
     respond_to do |format|
       if @company.save
+        creation_participation = Participation.new(pouss: @company, user: current_user, admin: true)
+        creation_participation.save
+        #@the_participation = current_user.participations.find_by(pouss: Company.all.last)
+        #@the_participation.admin = true
+        #@company.participations.first.admin = true
+        #Participation.where(user: current_user, pouss: @company).first.admin = true
+        #@company.participations.find_by(user: current_user).admin = true
+        #current_user.participations.find_by(pouss: @company).admin = true
         format.html { redirect_to @company, notice: 'Company was successfully created.' }
         format.json { render :show, status: :created, location: @company }
       else
@@ -69,6 +77,6 @@ class CompaniesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def company_params
-      params.fetch(:company, {})
+      params.require(:company).permit(:nom, :presentation, :email, :adresse, :latitude, :longitude, :photo, :photo_cache, :remove_photo)
     end
 end

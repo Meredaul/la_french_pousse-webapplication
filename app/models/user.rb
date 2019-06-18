@@ -1,6 +1,10 @@
 class User < ApplicationRecord
-  has_many :fait_partis
-  has_many :pousses, through: :fait_partis
+  has_many :participations
+  has_many :companies, through: :participations, source: :pouss, source_type: 'Company'
+
+  def pousses
+    Participation.where("user_id = #{self.id}").includes([:pouss]).map(&:pouss)
+  end
 
   mount_uploader :photo, PhotoUploader
   # Include default devise modules. Others available are:

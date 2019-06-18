@@ -1,7 +1,36 @@
 <div>
   <div class="row">
     <div class="col-6">
+      <h4>Companies:
+        <p>entreprises totales: <%= @companies_test.count %></p>
+        <% @companies_test.each do |company| %>
+          <p>nom:<%= company.nom %>, user:<%= company.users.first.first_name unless company.users.first.nil? %>, participations:<%= company.participations.count %></p>
+        <% end %>
+
+      <h4>Participations:</h4>
+        <p>participations totales: <%= @participations_test.count %></p>
+        <% @participations_test.each do |participation| %>
+          <p>user:<%= participation.user.first_name %>, pousse:<%= participation.pouss.nom %>, statut:<%= participation.statut %>, admin:<%= participation.admin %></p>
+          <% if participation.admin %>
+            <h1>HELLO</h1>
+          <% end %>
+        <% end %>
+
       <h1>Pages#home</h1>
+      <% user = current_user %> <% company = Company.all.last %>
+
+        <p>nombre participations du citoyen:<%= user.participations.count %></p>
+        <p>nombre de pousses du citoyen: <%= user.pousses.count %></p>
+        <p>nombre d'entreprises du citoyen: <%= user.companies.count %></p>
+
+        <p>nombre de participations de la dernière entreprise: <%= company.participations.count %></p>
+        <p>nombre de citoyens participants à l'entreprise: <%= company.users.count %></p>
+
+        <p>nom de la dernière entreprise dont participe citoyen: <%= user.participations.last.pouss.nom %></p>
+        <p>nom de la dernière personne participant dernière entreprise: <%= company.participations.last.user.first_name %></p>
+
+      <%= link_to "Créer votre entreprise", new_company_path %>
+
       <p>Bla bla bla</p>
       <p><%= current_user.present? %></p>
       <p><%= current_user.first_name %></p>

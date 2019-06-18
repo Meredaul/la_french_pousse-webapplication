@@ -1,6 +1,6 @@
-class CreatePousses < ActiveRecord::Migration[5.2]
+class CreateCompanies < ActiveRecord::Migration[5.2]
   def change
-    create_table :pousses do |t|
+    create_table :companies do |t|
       t.string :nom
       t.string :presentation
       t.string :photo

@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :companies
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 
   devise_scope :user do
@@ -12,8 +11,7 @@ Rails.application.routes.draw do
   end
 
 
-  resources :pousses
-
+  resources :companies, type: "company"
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
