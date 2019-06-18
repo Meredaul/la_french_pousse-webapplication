@@ -1,0 +1,2 @@
+class Pousse < ApplicationRecord
+end
