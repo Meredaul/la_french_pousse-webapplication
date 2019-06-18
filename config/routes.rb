@@ -1,11 +1,5 @@
 Rails.application.routes.draw do
-  get 'pousses/index'
-  get 'pousses/show'
-  get 'pousses/new'
-  get 'pousses/create'
-  get 'pousses/edit'
-  get 'pousses/update'
-  get 'pousses/destroy'
+  resources :companies
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 
   devise_scope :user do
