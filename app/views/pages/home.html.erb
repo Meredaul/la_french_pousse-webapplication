@@ -1,9 +1,6 @@
 <div>
   <div class="row">
     <div class="col-6">
-      <h3>Test Parc Geocode</h3>
-      <%#= link_to "Par ici", new_park_path %>
-
       <h4>Mes Companies:
         <% current_user.companies.merge(Participation.administrators).each do |company| %>
           <p><%= company.nom %></p>
