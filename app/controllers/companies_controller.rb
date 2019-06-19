@@ -29,6 +29,7 @@ class CompaniesController < ApplicationController
       if @company.save
         creation_participation = Participation.new(pouss: @company, user: current_user, admin: true)
         creation_participation.save
+
         format.html { redirect_to @company, notice: 'Company was successfully created.' }
         format.json { render :show, status: :created, location: @company }
       else
