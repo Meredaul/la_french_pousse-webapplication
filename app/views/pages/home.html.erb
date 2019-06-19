@@ -27,7 +27,7 @@
     </div>
 
     <div class="col-6">
-      <div id="map" style="width:100%; height: 80%;" data-markers="<%= @personnal_town_marker.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+      <div id="map" style="width:100%; height: 80%;" data-company_around_markers="<%= @companies_around_markers.to_json %>" data-personnal_town_marker="<%= @personnal_town_marker.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
     </div>
   </div>
 
