@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   has_many :participations
-  has_many :companies, through: :participations, source: :pouss, source_type: 'Company'
+  has_many :companies, through: :participations, source: :pouss, source_type: 'Company', uniq: true
+
+  has_many :company_passages
 
   def pousses
     Participation.where("user_id = #{self.id}").includes([:pouss]).map(&:pouss)
