@@ -6,6 +6,9 @@ class PagesController < ApplicationController
     @pousses_test = Pouss.all
     @companies_test = Company.all
 
-    @personnal_town_marker = [{ lat: current_user.latitude, lng: current_user.longitude }]
+    current_user_latitude = current_user.latitude
+    current_user_longitude = current_user.longitude
+    @personnal_town_marker = [{ lat: current_user_latitude, lng: current_user_longitude }]
+#    @companies_around = Company.near([current_user_latitude, current_user_longitude],20, order: :distance)
   end
 end
