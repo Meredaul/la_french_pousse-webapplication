@@ -5,6 +5,7 @@ const initMapbox = () => {
 
   const fitMapToMarkers = (map, markers, center) => {
     const bounds = new mapboxgl.LngLatBounds();
+    bounds.extend([center.lng, center.lat]);
     markers.forEach((marker) => {
       bounds.extend([marker.lng, marker.lat]);
       bounds.extend([2 * center.lng - marker.lng, 2 * center.lat - marker.lat]);

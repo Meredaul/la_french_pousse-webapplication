@@ -2,12 +2,17 @@
   <div class="row">
     <div class="col-6">
       <h4>Mes Companies:
-        <% current_user.companies.merge(Participation.administrators).each do |company| %>
-          <p><%= company.nom %></p>
+        <% unless current_user.companies.merge(Participation.administrators).empty? %>
+          <% current_user.companies.merge(Participation.administrators).each do |company| %>
+            <p><%= company.nom %></p>
+          <% end %>
         <% end %>
+
       <h4>Mes Pousses:</h4>
-        <% current_user.participations.where(admin: true).each do |participation| %>
+        <% unless current_user.participations.where(admin: true).empty? %>
+          <% current_user.participations.where(admin: true).each do |participation| %>
           <p><%= participation.pouss.nom %></p>
+          <% end %>
         <% end %>
 
       <h1>Pages#home</h1>
@@ -18,7 +23,7 @@
 
       <p>Bla bla bla</p>
 
-      <p>companies around: <%= @companies_around.first.nom %></p>
+      <p>companies around: <%= @companies_around.first.nom unless @companies_around.empty? %></p>
 
 
     </div>
