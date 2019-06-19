@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   has_many :participations
-  has_many :companies, through: :participations, source: :pouss, source_type: 'Company', uniq: true
+  has_many :companies, through: :participations, source: :pouss, source_type: 'Company'
 
   has_many :company_passages
 

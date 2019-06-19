@@ -1,6 +1,6 @@
 class Company < ApplicationRecord
   has_many :participations, as: :pouss
-  has_many :users, through: :participations, as: :pouss, uniq: true
+  has_many :users, through: :participations, as: :pouss
 
   has_many :company_passages
 
