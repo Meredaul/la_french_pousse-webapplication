@@ -1,6 +1,7 @@
-<h2>Log in</h2>
+<div class="container">
+  <h2>Log in</h2>
 
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: {id: :new_login}) do |f| %>
+  <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: {id: :new_login}) do |f| %>
   <div class="form-inputs">
     <%= f.input :email,
                 required: false,
@@ -17,46 +18,41 @@
   <div class="form-actions">
     <%= f.button :submit, "Log in" %>
   </div>
-<% end %>
+  <% end %>
 
+  <!-- ============================================================ -->
 
-<!-- ============================================================ -->
+  <%= link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path %>
 
+  <!-- ============================================================ -->
 
-<%= link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path %>
+  <h2>Sign Up</h2>
 
-
-<!-- ============================================================ -->
-
-<h2>Sign Up</h2>
-
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: {autocomplete: 'nip'}) do |f| %>
   <%= f.error_notification %>
-<!-- , html: {autocomplete: 'off'} -->
+
   <div class="form-inputs">
+    <%= f.input :first_name, label: false, required: true, autofocus: true, placeholder: "Prénom", input_html: {autocomplete: 'nope'} %>
 
-    <!-- <input autocomplete='email'name="name" type="text" style="display:none;"> -->
+    <%= f.input :last_name, label: false, required: true, autofocus: true, placeholder: "Nom de Famille", input_html: {autocomplete: 'nope'} %>
 
-    <%= f.input :first_name, label: "Prénom :", required: true, autofocus: true, placeholder: "Tyrion", input_html: {autocomplete: 'nope'} %>
+    <%= f.input :address, label: false, required: true, autofocus: true, placeholder: "Adresse", input_html: {autocomplete: 'nope', id: :personnal_registration} %>
 
-    <%= f.input :last_name, label: "Nom de Famille :", required: true, autofocus: true, placeholder: "Lannister", input_html: {autocomplete: 'nope'} %>
-
-    <%= f.input :adresse, label: "Adresse :", required: true, autofocus: true, placeholder: "King's Landing", input_html: {autocomplete: 'email', id: :personnal_registration_address} %>
-
-    <%= f.input :email, label: "Adresse électronique principale :", required: true, autofocus: true, placeholder: "tyrion.lannister@lafrenchpousse.fr", input_html: { autocomplete: "nope" } %>
+    <%= f.input :email, label: false, required: true, autofocus: true, placeholder: "Adresse Électronique Principale", input_html: { autocomplete: "nope" } %>
     <!-- autocomplete: 'email' -->
-    <%= f.input :password, label: "Mot de Passe :", required: true, autofocus: true, placeholder: "••••••", hint: ("#{@minimum_password_length} caractères minimum" if @minimum_password_length), input_html: { autocomplete: "new-password" } %>
+
+    <%= f.input :password, label: false, required: true, autofocus: true, placeholder: "Mot de Passe", input_html: { autocomplete: "new-password" }, hint: ("#{@minimum_password_length} caractères minimum" if @minimum_password_length) %>
     <!-- autocomplete: 'nope' -->
+
     <%= f.input :photo %>
     <%= f.input :photo_cache, as: :hidden %>
-
   </div>
 
   <div class="form-actions">
     <%= f.button :submit, "Rejoindre La French Pousse" %>
   </div>
-<% end %>
-
+  <% end %>
+</div>
 
 
 
