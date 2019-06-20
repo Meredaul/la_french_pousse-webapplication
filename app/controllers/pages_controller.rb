@@ -5,7 +5,7 @@ class PagesController < ApplicationController
     current_user_latitude = current_user.latitude
     current_user_longitude = current_user.longitude
 
-    @personnal_town_marker = [{ lat: current_user_latitude, lng: current_user_longitude }]
+    @personnal_address_marker = [{ lat: current_user_latitude, lng: current_user_longitude }]
     @companies_around = Company.near([current_user_latitude, current_user_longitude],20, order: :distance)
     @companies_around_markers = @companies_around.map do |company|
       {
@@ -15,6 +15,8 @@ class PagesController < ApplicationController
         image_url: helpers.asset_url('logo.png')
       }
     end
-    #    @citoyens_town_marker = User.all.map{|user| {lat: user.latitude, lng: user.longitude}}
+
+    @random_company_around = @companies_around.sample
+    #    @citoyens_address_marker = User.all.map{|user| {lat: user.latitude, lng: user.longitude}}
   end
 end

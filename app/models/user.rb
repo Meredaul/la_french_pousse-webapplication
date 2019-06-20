@@ -15,8 +15,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:google_oauth2]
 
-  geocoded_by :town
-  after_validation :geocode, if: :will_save_change_to_town?
+  geocoded_by :address
+  after_validation :geocode, if: :will_save_change_to_address?
 
   def self.from_omniauth(access_token)
     data = access_token.info

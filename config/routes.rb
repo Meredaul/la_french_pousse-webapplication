@@ -10,9 +10,9 @@ Rails.application.routes.draw do
     end
   end
 
-
-  resources :companies
-
+  resources :companies do
+    resources :company_passages, only: [:create, :destroy], as: :companypassages
+  end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

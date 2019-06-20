@@ -5,10 +5,12 @@
     <%= f.input :email,
                 required: false,
                 autofocus: true,
-                input_html: { id: :login_email, autocomplete: "email" } %>
+                input_html: { id: :login_email, autocomplete: "email"} %>
+                <!--   -->
     <%= f.input :password,
                 required: false,
                 input_html: { id: :login_password, autocomplete: "current-password" } %>
+                <!-- autocomplete: "new-password" -->
     <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
   </div>
 
@@ -30,18 +32,21 @@
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= f.error_notification %>
-
+<!-- , html: {autocomplete: 'off'} -->
   <div class="form-inputs">
-    <%= f.input :first_name, label: "Prénom :", required: true, autofocus: true, placeholder: "Tyrion" %>
 
-    <%= f.input :last_name, label: "Nom de Famille :", required: true, autofocus: true, placeholder: "Lannister" %>
+    <!-- <input autocomplete='email'name="name" type="text" style="display:none;"> -->
 
-    <%= f.input :town, label: "Ville/Village :", required: true, autofocus: true, placeholder: "King's Landing", input_html: {id: :personnal_registration_town} %>
+    <%= f.input :first_name, label: "Prénom :", required: true, autofocus: true, placeholder: "Tyrion", input_html: {autocomplete: 'nope'} %>
 
-    <%= f.input :email, label: "Adresse électronique principale :", required: true, autofocus: true, placeholder: "tyrion.lannister@lafrenchpousse.fr", input_html: { autocomplete: "email" }%>
+    <%= f.input :last_name, label: "Nom de Famille :", required: true, autofocus: true, placeholder: "Lannister", input_html: {autocomplete: 'nope'} %>
 
+    <%= f.input :adresse, label: "Adresse :", required: true, autofocus: true, placeholder: "King's Landing", input_html: {autocomplete: 'email', id: :personnal_registration_address} %>
+
+    <%= f.input :email, label: "Adresse électronique principale :", required: true, autofocus: true, placeholder: "tyrion.lannister@lafrenchpousse.fr", input_html: { autocomplete: "nope" } %>
+    <!-- autocomplete: 'email' -->
     <%= f.input :password, label: "Mot de Passe :", required: true, autofocus: true, placeholder: "••••••", hint: ("#{@minimum_password_length} caractères minimum" if @minimum_password_length), input_html: { autocomplete: "new-password" } %>
-
+    <!-- autocomplete: 'nope' -->
     <%= f.input :photo %>
     <%= f.input :photo_cache, as: :hidden %>
 

@@ -1,81 +1,43 @@
-<div>
-  <div class="row">
-    <div class="col-6">
-      <h4>Mes Companies:
-        <% unless current_user.companies.merge(Participation.administrators).empty? %>
-          <% current_user.companies.merge(Participation.administrators).each do |company| %>
-            <p><%= company.nom %></p>
-          <% end %>
+<div class="row" style="flex: 1 1 auto;" >
+
+
+  <div class="col-6">
+
+    <div id="map" style="width:100%; height: 67%;" data-company_around_markers="<%= @companies_around_markers.to_json %>" data-personnal_address_marker="<%= @personnal_address_marker.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+    </div>
+
+    <div id="liste_pousses_locales" style="width: 100%; height: 33%; display: flex; align-items: center; justify-content: space-around;">
+      <% if @companies_around.empty? %>
+        <div id="aucune_entreprises_autour">
+          <p>Pas encore de pousses dans le coin ..</p>
+          <p>Ramener les associations et les entreprises (entreprise française, moins de 10 salariés et non franchisée) pour aider leur visibilité locale</p>
+        </div>
+      <% else %>
+        <div id="liste_entreprises_autour">
+        <% @companies_around.each do |entreprise| %>
+          <p><%= entreprise.nom %></p>
         <% end %>
-
-      <h4>Mes Pousses:</h4>
-        <% unless current_user.participations.where(admin: true).empty? %>
-          <% current_user.participations.where(admin: true).each do |participation| %>
-          <p><%= participation.pouss.nom %></p>
-          <% end %>
-        <% end %>
-
-      <h1>Pages#home</h1>
-
-      <p>Currrent user: latitude <%= current_user.latitude %>, longitude <%= current_user.longitude %> - <%= current_user.first_name %> - <%= current_user.town %> <%= current_user.present? %></p>
-
-      <%= link_to "Créer votre entreprise", new_company_path %>
-
-      <p>Bla bla bla</p>
-
-      <p>companies around: <%= @companies_around.first.nom unless @companies_around.empty? %></p>
-
-
+        </div>
+      <% end %>
     </div>
 
-    <div class="col-6">
-      <div id="map" style="width:100%; height: 80%;" data-company_around_markers="<%= @companies_around_markers.to_json %>" data-personnal_town_marker="<%= @personnal_town_marker.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
-    </div>
   </div>
+
+
+
+  <div class="col-6">
+
+    <div id="profile_pousse_homepage" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: space-around;">
+      <% if @companies_around.empty? %>
+        <div id="aucune_pousse_profil">
+          <p>êtes vous dans un désert ?</p>
+        </div>
+      <% else %>
+        <%= render(partial: "profilePousseHomepage", locals: {company: @random_company_around}) %>
+      <% end %>
+    </div>
+
+  </div>
+
 
 </div>
-
-<div class = "container">
-  <div class = "row">
-    <p>Quartiers préférés de London:</p>
-  </div>
-
-  <div class="row justify-content-around">
-    <div class="col-10">
-      <div class="d-flex justify-content-around align-items-center">
-        <div><%= cl_image_tag("dmsqbmcjwpaidnqrhsph", width:300, height: 300, crop: :fit) %></div>
-        <div><%= cl_image_tag("uyvcdvzqbzaht6qe5uio", width:300, height:300, crop: :fit) %></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-
-
-<div class="navbar bg-white py-3 px-4">
-  <i class="fas fa-smile"></i>
-  <div class="nav-bar-right d-flex align-items-center">
-    <%= link_to "Profile", "#", class: "px-3 d-none d-sm-block" %>
-    <%= link_to "Dashboard", "#", class: "px-3 d-none d-sm-block" %>
-    <%= link_to "Login", "#", class: "px-3 d-none d-sm-block" %>
-    <div class="dropdown  d-none d-sm-block">
-      <%= image_tag "http://www.placehold.it/40x40", class: "rounded-circle px-3", alt:"avatar", type: "image", id: "dropdownMenuButton", data: { toggle:"dropdown" }, aria: { haspopup:"true", expanded: "false" } %>
-      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-        <%= link_to "Action", "#", class: "dropdown-item" %>
-        <%= link_to "Another action", "#", class: "dropdown-item" %>
-        <%= link_to "Something else here", "#", class: "dropdown-item" %>
-      </div>
-    </div>
-  </div>
-  <div class="dropdown burger d-block d-sm-none">
-    <i class="fas fa-bars" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
-    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-     <%= link_to "Action", "#", class: "dropdown-item" %>
-     <%= link_to "Another action", "#", class: "dropdown-item" %>
-     <%= link_to "Something else here", "#", class: "dropdown-item" %>
-   </div>
- </div>
-</div>
-
