@@ -14,9 +14,14 @@
         </div>
       <% else %>
         <div id="liste_entreprises_autour">
-        <% @companies_around.each do |entreprise| %>
-          <p><%= entreprise.nom %></p>
-        <% end %>
+
+          <% @companies_around_grouped.each do |entreprise| %>
+            <div class="company_home_item">
+              <div><%= image_tag(entreprise.category.icon, class: "company_home_item_icon") %></div>
+              <div><%= entreprise.nom %></div>
+            </div>
+          <% end %>
+
         </div>
       <% end %>
     </div>

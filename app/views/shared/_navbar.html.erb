@@ -1,4 +1,5 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+<!-- logo -->
   <%= link_to "/", class: "navbar-brand" do %>
     <%= image_tag "logo.png" %>
     <% end %>
@@ -23,7 +24,7 @@
         <li class="nav-item dropdown">
           <% if current_user.present? %>
             <% if current_user.photo.present? %>
-              <%= cl_image_tag current_user.photo, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+              <%= cl_image_tag current_user.photo, class: "avatar-bordered dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <% else %>
               <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <% end %>

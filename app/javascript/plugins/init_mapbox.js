@@ -30,7 +30,8 @@ const initMapbox = () => {
     const personnal_address_marker = JSON.parse(mapElement.dataset.personnal_address_marker);
     const centerElement = document.createElement('div');
     centerElement.className = 'marker';
-    new mapboxgl.Marker()
+// enlever centerElement pour avoir indicateur position
+    new mapboxgl.Marker(centerElement)
     .setLngLat([ personnal_address_marker[0].lng, personnal_address_marker[0].lat])
     .addTo(map);
 
