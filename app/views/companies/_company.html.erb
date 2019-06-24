@@ -1,0 +1,29 @@
+<!-- declarations variables -->
+<% company_passage_personnel_precedent = company.company_passages.find { |passage| passage.user == current_user } %>
+<% compteur_passage = company.company_passages.count %>
+
+
+<div id="profile_pousse_homepage_partial">
+
+<!-- TESTS -->
+  <p><%= company_companypassages_path(company) %></p>
+  <p><%= company_companypassage_path(company, company_passage_personnel_precedent) if company_passage_personnel_precedent %></p>
+  <p>Adresse : <%= company.address %></p>
+  <p>Latitude : <%= company.latitude %></p>
+  <p>Longitude : <%= company.longitude %></p>
+  <p>Présentation : <%= company.presentation %></p>
+
+<!-- COMPTEUR PREUVE SOCIALE -->
+  <h1><%= company.nom %></h1>
+  <p class='compteur_preuve_sociale' ><%= compteur_passage %><%= compteur_passage <= 1 ? " citoyen connait" : " citoyens connaissent" %></p>
+
+<!-- BOUTON PASSAGE -->
+  <div class="bouton bouton-company_passage">
+      <% if company_passage_personnel_precedent %>
+        <%= link_to 'Inconnue', company_companypassage_path(company, company_passage_personnel_precedent), {class:'btn btn-info', method: :delete, remote: true} %>
+      <% else %>
+        <%= button_to 'Connue', company_companypassages_path(company), {class:"bouton-company_passage connu btn btn-info",  method: :post, remote:true} %>
+    <% end %>
+  </div>
+
+</div>

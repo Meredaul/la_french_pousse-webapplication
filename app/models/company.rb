@@ -4,6 +4,8 @@ class Company < ApplicationRecord
 
   has_many :company_passages, dependent: :destroy
 
+  belongs_to :category
+
   mount_uploader :photo, PhotoUploader
 
   geocoded_by :address

@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_20_145850) do
+ActiveRecord::Schema.define(version: 2019_06_23_152220) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.string "icon"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "companies", force: :cascade do |t|
     t.string "nom"
@@ -26,6 +33,7 @@ ActiveRecord::Schema.define(version: 2019_06_20_145850) do
     t.integer "compteur_passage"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "category_id"
   end
 
   create_table "company_passages", force: :cascade do |t|

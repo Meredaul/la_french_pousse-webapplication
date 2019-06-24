@@ -12,6 +12,8 @@
 
     <%= f.input :email, label: "Adresse électronique principale :", required: true, autofocus: true, placeholder: "tyrion.lannister@lafrenchpousse.fr", input_html: { autocomplete: "nope" }%>
 
+    <%= f.input :category_id, collection: @categories, label_method: :first, value_method: :second, label: "Catégorie :" %>
+
     <%= f.input :photo %>
     <%= f.input :photo_cache, as: :hidden %>
 

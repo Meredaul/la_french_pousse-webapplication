@@ -24,16 +24,15 @@
   </div>
 
 
-
   <div class="col-6">
 
-    <div id="profile_pousse_homepage" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: space-around;">
+    <div id="profile_pousse_homepage" >
       <% if @companies_around.empty? %>
         <div id="aucune_pousse_profil">
           <p>êtes vous dans un désert ?</p>
         </div>
       <% else %>
-        <%= render(partial: "profilePousseHomepage", locals: {company: @random_company_around}) %>
+        <%= render @random_company_around %>
       <% end %>
     </div>
 

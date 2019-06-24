@@ -11,31 +11,36 @@ class CompaniesController < ApplicationController
   # GET /companies/1
   # GET /companies/1.json
   def show
+    respond_to do |format|
+      format.js { render action: 'show.js.erb' }
+    end
   end
 
   # GET /companies/new
   def new
-    @company = Company.new
+      @company = Company.new { @categories = Category.all.map { |category| [category.name, category.id]} }
   end
 
   # GET /companies/1/edit
   def edit
+    @categories = Category.all.map { |category| [category.name, category.id]}
   end
 
   # POST /companies
   # POST /companies.json
   def create
     @company = Company.new(company_params)
+    # @company.category_id = params[:category_id]
     respond_to do |format|
       if @company.save
         creation_participation = Participation.new(pouss: @company, user: current_user, admin: true)
         creation_participation.save
 
-        format.html { redirect_to @company, notice: 'Company was successfully created.' }
+        format.html { redirect_to :authenticated_root, notice: 'Company was successfully created.' }
         format.json { render :show, status: :created, location: @company }
       else
-        format.html { render :new }
-        format.json { render json: @company.errors, status: :unprocessable_entity }
+        format.html { render :authenticated_root, notice: "Counldn't create Company" }
+        # format.json { render json: @company.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -45,11 +50,11 @@ class CompaniesController < ApplicationController
   def update
     respond_to do |format|
       if @company.update(company_params)
-        format.html { redirect_to @company, notice: 'Company was successfully updated.' }
-        format.json { render :show, status: :ok, location: @company }
+        format.html { redirect_to :authenticated_root, notice: 'Company was successfully updated.' }
+        # format.json { render :show, status: :ok, location: @company }
       else
         format.html { render :edit }
-        format.json { render json: @company.errors, status: :unprocessable_entity }
+        # format.json { render json: @company.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -59,8 +64,8 @@ class CompaniesController < ApplicationController
   def destroy
     @company.destroy
     respond_to do |format|
-      format.html { redirect_to companies_url, notice: 'Company was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html { redirect_to :authenticated_root, notice: 'Company was successfully destroyed.' }
+      # format.json { head :no_content }
     end
   end
 
@@ -72,6 +77,6 @@ class CompaniesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def company_params
-      params.require(:company).permit(:nom, :presentation, :email, :address, :latitude, :longitude, :photo, :photo_cache, :remove_photo)
+      params.require(:company).permit(:nom, :presentation, :email, :address, :latitude, :longitude, :photo, :photo_cache, :remove_photo, :category_id)
     end
 end

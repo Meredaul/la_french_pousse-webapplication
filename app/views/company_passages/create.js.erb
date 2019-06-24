@@ -1,0 +1,9 @@
+console.log("create.js.erb file");
+
+// Mise à jour - nombre de preuve sociale
+var compteurPreuveSociale = document.querySelector(".compteur_preuve_sociale");
+compteurPreuveSociale.outerHTML = "<p class='compteur_preuve_sociale' ><%= @company.company_passages.count %><%= @company.company_passages.count <= 1 ? ' citoyen connait' : ' citoyens connaissent' %></p>"
+
+// Mise à jour - bouton
+var homeProfilEntreprise = document.querySelector(".bouton-company_passage");
+homeProfilEntreprise.outerHTML = '<%= j render(partial: "shared/bouton_entreprise_passage.html.erb", locals: {@company_passage => @company_passage, @company => @company} ) %>';

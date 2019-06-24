@@ -1,33 +1,38 @@
 class CompanyPassagesController < ApplicationController
-  before_action :set_company, only: [:create]
+  before_action :set_company, only: [:create, :destroy]
   before_action :set_company_user_passage, only: [:destroy]
 
   def create
+    @company_passage = CompanyPassage.new(user: current_user, company: @company)
     if already_linked
       flash[:notice] = "Vous ne pouvez connaître une entreprise plus d'une fois"
     else
-      @company.company_passages.create(user: current_user)
-    end
-    # Handle The Ajax
-    if request.xhr?
-      head :ok
-    else
-      redirect_to :authenticated_root
+      respond_to do |format|
+        if @company_passage.save
+          format.html { redirect_to :authenticated_root, notice: 'Company_passage was successfully created.' }
+          # format.json { render :home, status: :created, location: :page }
+          format.js { render action: 'create.js.erb' } #
+        else
+          format.html { render :new }
+          # format.json { render json: @company_passage.errors, status: :unprocessable_entity }
+          flash[:notice] = "Impossible de sauvegarder"
+        end
+      end
     end
   end
 
   def destroy
-    if @passage
-      @passage.destroy
-      if request.xhr?
-        head :ok
+    respond_to do |format|
+      if @passage.destroy
+        format.html { redirect_to :authenticated_root, notice: 'Company_passage was successfully destroyed.' }
+        # format.json { render :home, status: :created, location: :page }
+        format.js { render action: 'destroy.js.erb' } #
       else
-        redirect_to :authenticated_root
+        format.html { render :new }
+        # format.json { render json: @company_passage.errors, status: :unprocessable_entity }
+        flash[:notice] = "Cette entreprise vous est déjà inconnue"
       end
-    else
-      flash[:notice] = "Cette entreprise vous est déjà inconnue"
     end
-    # Handle The Ajax
   end
 
   private
@@ -35,6 +40,7 @@ class CompanyPassagesController < ApplicationController
   def set_company_user_passage
     @passage = CompanyPassage.find(params[:id])
   end
+
   def set_company
     @company = Company.find(params[:company_id])
   end
