@@ -1,12 +1,117 @@
-.navbar-lewagon {
+#positionnement-logo {
+  margin: 0 auto;
+  position: relative;
+  .logo-aureole{
+    position: absolute;
+    top: -15px; //-50px
+    right: -50px; //-50px
+    z-index: 2;
+    background-color: white;
+    padding: 20px 28px 18px 21px;
+    border-radius: 50%;
+    img {
+      filter: drop-shadow(-3px 5px 3px rgba(0, 0, 0, 0.3));
+    }
+    &:hover img{
+      opacity: 0.9;
+    }
+  }
+}
+
+
+#lafrenchpousse-navbar {
+  z-index: 1;
+  display: flex;
   justify-content: space-between;
-  background: white;
+  align-items: center;
+  padding: 0px 25px;
+  background-color: white;
+  filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.02));
+  .flexalign {
+    display: flex;
+    align-items: center;
+  }
+  .lfp-navbar-element{
+    &:hover h6 {
+      color: rgba(0, 0, 0, 0.7);
+      // opacity: 0.5;
+    }
+  }
 }
 
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
+#espace-pousses {
+  display: flex;
+  align-items: center;
+  img {
+    margin-right: 10px;
+  }
+  h6 {
+    margin-bottom: 0;
+    margin-right: 25px;
+    color: rgba(0, 0, 0, 0.5);
+  }
+  #mes-pousses {
+  }
+  #creation-pousse {
+  }
 }
 
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
+#lafrenchpousse-logo {
+}
+
+#espace-citoyen {
+  display: flex;
+  align-items: center;
+  #repositionnement {
+    .search-form-control {
+      position: relative;
+    }
+    .search-form-control .btn {
+      position: absolute;
+      top: 8px;
+      bottom: 8px;
+      right: 8px;
+    }
+    .search-form-control .form-control {
+      height: 3.5rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      border: 1px solid #E7E7E7;
+    }
+    .search-form-control .form-control:focus {
+      border: 1px solid #1EDD88;
+      outline: none !important;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+    .btn-flat {
+      color: white;
+      padding: 8px 24px;
+      border-radius: 4px;
+      background: #1EDD88;
+      transition: background 0.3s ease;
+    }
+    .btn-flat:hover {
+      background: #1BCB7F;
+      color: white;
+    }
+  }
+  #profil-citoyen {
+    padding: 2px 0px;
+    img {
+      filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.2));
+      border: 1px solid white;
+    }
+    &:hover img{
+      opacity: 0.9;
+    }
+    .profil-image-box {
+      margin: 8px 0px;
+    }
+
+    .avatar-photo-profil {
+      border-radius: 50%;
+    }
+    .dropdown-menu {
+      z-index: 2;
+    }
+  }
 }

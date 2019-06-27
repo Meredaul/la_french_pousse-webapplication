@@ -1,34 +1,149 @@
-// Specific CSS for your home-page
+/////////////////////////////////////////////////////////
+/////     STRUCTURE GENERALE
+/////////////////////////////////////////////////////////
+
 body {
   padding: 25px 50px;
 }
 
+#corps {
+  flex: 1 1 auto;
+  padding: 35px 25px 15px 25px;
+  .row{
+    height: 100%;
+  }
+  .row > .col-6 {
+    padding: 0px 25px;
+  }
+}
+
+#profile-pousse-homepage {
+  height: 100%;
+}
+
+/////////////////////////////////////////////////////////
+/////     MAP
+/////////////////////////////////////////////////////////
+
 #map {
-  margin: 25px 0px;
   box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
+  width:100%;
+  height: 67%;
 }
 
+////////////////////////////////////////////////////////
+/////     LISTE ENTREPRISES LOCALES
+////////////////////////////////////////////////////////
 
 #liste_pousses_locales {
-
+  width: 100%;
+  height: 33%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding-top: 25px;
 }
 
-#liste_entreprises_autour{
+.liste_entreprises_autour{
   flex-flow: column;
   display: flex;
   justify-content: space-around;
-  align-items: center;
-  width: 100%;
+  height: 100%;
 }
 
 .company_home_item{
   display: flex;
-  justify-content: space-around;
   align-items: center;
-  width: 50%;
-}
-.company_home_item_icon {
+  color: black;
+  opacity: 0.8;
+  &:hover {
+    opacity: 1;
+  }
+  .company_home_item_icon {
   height: 25px;
   width: 25px;
+  margin-right: 5px;
+  }
 }
+
+a {
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+/////////////////////////////////////////////////////////
+/////     PROFIL ENTREPRISE
+/////////////////////////////////////////////////////////
+
+#profile-pousse-homepage-partial {
+  height: 100%;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  flex-flow: column;
+}
+
+#cover-company-profil-image {
+  width: 100%;
+  // flex: 1 1 auto;
+  height: 200px;
+  object-fit: cover;
+}
+
+#company-profil-header {
+  background: white;
+  padding: 10px 30% 8px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0px -1px 5px rgba(0,0,0,0.1);
+  h2 {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+  }
+  p {
+    font-size: 12px;
+    opacity: .7;
+    margin: 0;
+  }
+  position: relative;
+  #company-category-icon {
+    position: absolute;
+    right: 25px;
+    top: -25px;
+    padding: 5px;
+    border-radius: 50%;
+    background-color: white;
+    box-shadow: 0px 1px 2px rgba(0,0,0,0.1);
+    .company-category-icon-image{
+      width: 40px;
+    }
+  }
+}
+
+#company-profil-information-container {
+  padding: 15px;
+  flex: 1 1 auto;
+  display: flex;
+  flex-flow: column;
+  .preuve-sociale-pousse {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-between;
+    p {
+      margin: 0px;
+      padding: 10px 0px;
+    }
+  }
+  .presentation-profil-entreprise {
+    flex: 1 1 auto;
+    margin: 5px 0px;
+    padding: 10px 15px;
+  }
+}
+

@@ -3,27 +3,40 @@
 <% compteur_passage = company.company_passages.count %>
 
 
-<div id="profile_pousse_homepage_partial">
+<div id="profile-pousse-homepage-partial">
 
-<!-- TESTS -->
-  <p><%= company_companypassages_path(company) %></p>
-  <p><%= company_companypassage_path(company, company_passage_personnel_precedent) if company_passage_personnel_precedent %></p>
-  <p>Adresse : <%= company.address %></p>
-  <p>Latitude : <%= company.latitude %></p>
-  <p>Longitude : <%= company.longitude %></p>
-  <p>Présentation : <%= company.presentation %></p>
-
-<!-- COMPTEUR PREUVE SOCIALE -->
-  <h1><%= company.nom %></h1>
-  <p class='compteur_preuve_sociale' ><%= compteur_passage %><%= compteur_passage <= 1 ? " citoyen connait" : " citoyens connaissent" %></p>
-
-<!-- BOUTON PASSAGE -->
-  <div class="bouton bouton-company_passage">
-      <% if company_passage_personnel_precedent %>
-        <%= link_to 'Inconnue', company_companypassage_path(company, company_passage_personnel_precedent), {class:'btn btn-info', method: :delete, remote: true} %>
-      <% else %>
-        <%= button_to 'Connue', company_companypassages_path(company), {class:"bouton-company_passage connu btn btn-info",  method: :post, remote:true} %>
-    <% end %>
+  <div id="cover-company-profil">
+    <%= cl_image_tag(company.photo, id: "cover-company-profil-image") %>
   </div>
+
+  <div id="company-profil-header">
+    <div>
+      <h2><%= company.nom %></h2>
+      <p><%= company.category.name %> (<%= company.address.split(",")[1].strip.capitalize %>)</p>
+    </div>
+    <div id="company-category-icon">
+      <%= image_tag(company.category.icon, class:"company-category-icon-image") %>
+    </div>
+  </div>
+
+
+  <div id="company-profil-information-container">
+    <div class="preuve-sociale-pousse">
+      <!-- BOUTON PASSAGE -->
+      <div class="bouton bouton-company_passage">
+        <% if company_passage_personnel_precedent %>
+          <%= link_to 'Inconnue', company_companypassage_path(company, company_passage_personnel_precedent), {class:'btn btn-success', method: :delete, remote: true} %>
+        <% else %>
+          <%= button_to 'Connue', company_companypassages_path(company), {class:"bouton-company_passage connu btn btn-info",  method: :post, remote:true} %>
+        <% end %>
+      </div>
+      <!-- COMPTEUR PREUVE SOCIALE -->
+      <p class='compteur_preuve_sociale' ><%= compteur_passage %><%= compteur_passage <= 1 ? " citoyen connait" : " citoyens connaissent" %> cette pousse !</p>
+    </div>
+    <div class="presentation-profil-entreprise">
+      <p><%= company.presentation %></p>
+    </div>
+  </div>
+
 
 </div>

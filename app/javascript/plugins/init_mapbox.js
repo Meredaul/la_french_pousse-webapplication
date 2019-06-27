@@ -46,8 +46,8 @@ const initMapbox = () => {
       element.style.backgroundImage = `url("${marker.icon_url}")`;
       element.style.backgroundSize = 'contain';
       element.style.backgroundRepeat = 'no-repeat';
-      element.style.width = '50px';
-      element.style.height = '50px';
+      element.style.width = '25px';
+      element.style.height = '25px';
 
       let linkToControllerCompanyProfil = document.createElement("a");// js actualisation company profil
       linkToControllerCompanyProfil.setAttribute('data-method', 'get');
