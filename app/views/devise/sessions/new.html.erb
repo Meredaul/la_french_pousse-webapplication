@@ -1,57 +1,84 @@
-<div class="container">
-  <h2>Log in</h2>
+<div id="bg-image"></div>
+<div id="welcome-page">
 
-  <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: {id: :new_login}) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: false,
-                autofocus: true,
-                input_html: { id: :login_email, autocomplete: "email"} %>
-                <!--   -->
-    <%= f.input :password,
-                required: false,
-                input_html: { id: :login_password, autocomplete: "current-password" } %>
-                <!-- autocomplete: "new-password" -->
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+  <div id="login-form">
+    <h4>Citoyens La French Pousse : </h4>
+    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: {id: :new_login, class: 'form-inline'}, wrapper: :inline_form) do |f| %>
+      <div id="login-form-interactions">
+        <%= f.input :email,
+                    label: false,
+                    required: false,
+                    autofocus: true,
+                    input_html: { id: :login_email, autocomplete: "email"},
+                    placeholder: "Adresse Électronique d'enregistrement" %>
+        <%= f.input :password,
+                    label: false,
+                    required: false,
+                    input_html: { id: :login_password, autocomplete: "current-password" },
+                    placeholder: "Mot de Passe" %>
+                    <!-- autocomplete: "new-password" -->
+        <%#= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+        <%= f.button :submit, "J'y Retourne", class: "bouton-acces-lfp" %>
+      </div>
+    <% end %>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Log in" %>
+
+
+  <div id="reste-welcome-page" class="row">
+    <div id="reste-welcome-page-gauche" class="col-6">
+      <div id="logo-ecriture-welcome">
+        <%= image_tag "logo_ecriture.png", style: "width: 40vw;" %>
+      </div>
+    </div>
+
+    <div id="reste-welcome-page-droite" class="col-6">
+      <div id="signup-form">
+        <h5>Je Suis Nouveau</h5>
+
+        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: {autocomplete: 'nip'}) do |f| %>
+        <%= f.error_notification %>
+
+        <div class="form-inputs">
+          <div class="row">
+            <div class="col-6">
+              <%= f.input :first_name, label: false, required: true, autofocus: true, placeholder: "Prénom", input_html: {autocomplete: 'nope'} %>
+            </div>
+            <div class="col-6">
+              <%= f.input :last_name, label: false, required: true, autofocus: true, placeholder: "Nom de Famille", input_html: {autocomplete: 'nope'} %>
+            </div>
+          </div>
+
+          <%= f.input :address, label: false, required: true, autofocus: true, placeholder: "Adresse", input_html: {autocomplete: 'nope', id: :personnal_registration} %>
+
+          <%= f.input :email, label: false, required: true, autofocus: true, placeholder: "Adresse Électronique Principale", input_html: { autocomplete: "nope" } %>
+          <!-- autocomplete: 'email' -->
+
+          <%= f.input :password, label: false, required: true, autofocus: true, placeholder: "Mot de Passe", input_html: { autocomplete: "new-password" }, hint: ("#{@minimum_password_length} caractères minimum" if @minimum_password_length) %>
+          <!-- autocomplete: 'nope' -->
+
+          <%= f.input :photo, label: false %>
+          <%= f.input :photo_cache, as: :hidden %>
+
+        </div>
+
+        <div class="form-actions">
+          <%= f.button :submit, "Rejoindre La French Pousse", class: "bouton-acces-lfp" %>
+        </div>
+        <% end %>
+      </div>
+      <div id="under-welcome-signup">
+        <%= link_to user_google_oauth2_omniauth_authorize_path id: "" do %>
+          <div id="google-link-description-welcome">
+            <p id="" >Ou créer votre compte avec votre adresse Google:</p>
+            <%= image_tag "google.png", style: "height: 25px;" %>
+          </div>
+        <% end %>
+
+      </div>
+    </div>
   </div>
-  <% end %>
 
-  <!-- ============================================================ -->
-
-  <%= link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path %>
-
-  <!-- ============================================================ -->
-
-  <h2>Sign Up</h2>
-
-  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: {autocomplete: 'nip'}) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :first_name, label: false, required: true, autofocus: true, placeholder: "Prénom", input_html: {autocomplete: 'nope'} %>
-
-    <%= f.input :last_name, label: false, required: true, autofocus: true, placeholder: "Nom de Famille", input_html: {autocomplete: 'nope'} %>
-
-    <%= f.input :address, label: false, required: true, autofocus: true, placeholder: "Adresse", input_html: {autocomplete: 'nope', id: :personnal_registration} %>
-
-    <%= f.input :email, label: false, required: true, autofocus: true, placeholder: "Adresse Électronique Principale", input_html: { autocomplete: "nope" } %>
-    <!-- autocomplete: 'email' -->
-
-    <%= f.input :password, label: false, required: true, autofocus: true, placeholder: "Mot de Passe", input_html: { autocomplete: "new-password" }, hint: ("#{@minimum_password_length} caractères minimum" if @minimum_password_length) %>
-    <!-- autocomplete: 'nope' -->
-
-    <%= f.input :photo %>
-    <%= f.input :photo_cache, as: :hidden %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Rejoindre La French Pousse" %>
-  </div>
-  <% end %>
 </div>
 
 

@@ -1,69 +1,108 @@
-<div id="positionnement-logo">
-  <div id="lafrenchpousse-logo">
-    <%= link_to "/", class: "logo-aureole" do %>
-      <%= image_tag "logo.png", style: "width: 50px;" %>
-    <% end %>
+<% if current_user.present? %>
+
+
+  <div id="positionnement-logo">
+    <div id="lafrenchpousse-logo">
+      <%= link_to "/", class: "logo-aureole" do %>
+        <%= image_tag "logo.png", style: "width: 50px;" %>
+      <% end %>
+    </div>
   </div>
-</div>
 
-<div id="lafrenchpousse-navbar">
+  <div id="lafrenchpousse-navbar">
 
-  <div id="espace-pousses">
-    <div id="mes-pousses" class="lfp-navbar-element">
-      <%= link_to companies_path, {class: "flexalign"} do %>
-        <% case current_user.participations.count %>
-        <% when 0 %>
-        <% when 1 %>
-          <%= image_tag "pousse.png", style: "width: 25px;" %>
-          <h6>Ma Pousse</h6>
-        <% else %>
-          <%= image_tag "pousse.png", style: "width: 25px;" %>
-          <h6 class="">Mes Pousses</h6>
+    <div id="espace-pousses">
+      <div id="mes-pousses" class="lfp-navbar-element">
+        <% if current_user.present? %>
+          <%= link_to companies_path, {class: "flexalign"} do %>
+            <% case current_user.participations.count %>
+            <% when 0 %>
+            <% when 1 %>
+              <%= image_tag "pousse.png", style: "width: 25px;" %>
+              <h6>Ma Pousse</h6>
+            <% else %>
+              <%= image_tag "pousse.png", style: "width: 25px;" %>
+              <h6 class="">Mes Pousses</h6>
+            <% end %>
+          <% end %>
         <% end %>
-      <% end %>
+      </div>
+      <div id="creation-pousse" class="lfp-navbar-element">
+        <% if current_user.present? %>
+          <%#= link_to new_company_path, class: "flexalign" do %>
+            <%#= image_tag "nouvelle_pousse.png", style: "width: 25px;" %>
+            <!-- <h6>Nouvelle Pousse</h6> -->
+          <%# end %>
+          <!-- Button trigger modal -->
+          <a class="flexalign" data-toggle="modal" data-target="#modal-creation-pousse" >
+            <%= image_tag "nouvelle_pousse.png", style: "width: 25px;" %>
+            <h6>Nouvelle Pousse</h6>
+          </a>
+        <% end %>
+      </div>
     </div>
-    <div id="creation-pousse" class="lfp-navbar-element">
-      <%= link_to new_company_path, class: "flexalign" do %>
-        <%= image_tag "nouvelle_pousse.png", style: "width: 25px;" %>
-        <h6>Nouvelle Pousse</h6>
-      <% end %>
+
+    <div id="espace-citoyen">
+      <!-- <div id="repositionnement">
+        <%#= simple_form_for :search, url: :authenticated_root do |f| %>
+          <div class="search-form-control form-group" style= "margin: 0px;">
+            <input class="form-control string required" type="text" name="search[query]" id="search_query" />
+            <button name="button" type="submit" class="btn btn-flat">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        <%# end %>
+      </div> -->
+      <div id="profil-citoyen" >
+        <% if current_user.present? %>
+          <% if current_user.photo.present? %>
+          <div class="dropdown">
+            <a class="" href="#" role="" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <div class="profil-image-box">
+                <%= cl_image_tag current_user.photo, width:50, height:50, crop: :fill, gravity: :face, class: "avatar-photo-profil" %>
+              </div>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="#">Patati</a>
+              <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+            </div>
+          </div>
+          <% else %>
+            <%= image_tag "logo.png", height: 50 %>
+          <% end %>
+        <% else %>
+          <%= image_tag "logo.png", height: 50 %>
+        <% end %>
+      </div>
     </div>
+
   </div>
 
-  <div id="espace-citoyen">
-    <!-- <div id="repositionnement">
-      <%#= simple_form_for :search, url: :authenticated_root do |f| %>
-        <div class="search-form-control form-group" style= "margin: 0px;">
-          <input class="form-control string required" type="text" name="search[query]" id="search_query" />
-          <button name="button" type="submit" class="btn btn-flat">
-            <i class="fas fa-search"></i>
+
+
+  <!-- Modal Creation Pousse -->
+  <div class="modal fade" id="modal-creation-pousse" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Création Pousse</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
           </button>
         </div>
-      <%# end %>
-    </div> -->
-    <div id="profil-citoyen" >
-      <% if current_user.present? %>
-        <% if current_user.photo.present? %>
-        <div class="dropdown">
-          <a class="" href="#" role="" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <div class="profil-image-box">
-              <%= cl_image_tag current_user.photo, width:50, height:50, crop: :fill, gravity: :face, class: "avatar-photo-profil" %>
-            </div>
-          </a>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-          </div>
+        <div class="modal-body">
+
+          <% @company = Company.new { @categories = Category.all.map { |category| [category.name, category.id]} } %>
+          <%= render 'companies/form', company: @company %>
+
         </div>
-        <% else %>
-          <%= image_tag "logo.png" %>
-        <% end %>
-      <% else %>
-        <%= image_tag "logo.png" %>
-      <% end %>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
     </div>
   </div>
 
-</div>
+
+<% end %>
