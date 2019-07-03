@@ -24,6 +24,10 @@ class CompaniesController < ApplicationController
   # GET /companies/1/edit
   def edit
     @categories = Category.all.map { |category| [category.name, category.id]}
+    respond_to do |format|
+      format.html
+      format.js { render :edit, locals: { company: @company }}
+    end
   end
 
   # POST /companies

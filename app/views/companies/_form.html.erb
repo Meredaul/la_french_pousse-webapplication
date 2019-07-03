@@ -4,22 +4,22 @@
 
   <div class="form-inputs">
 
-    <%= f.input :nom, label: "Nom :", required: true, autofocus: true, placeholder: "Tyrion" %>
+    <%= f.input :nom, label: false, required: true, autofocus: true, placeholder: "Nom De Votre Pousse" %>
 
-    <%= f.input :presentation, label: "Presentation :", required: true, autofocus: true, placeholder: "Lannister" %>
+    <%= f.input :presentation, label: false, required: true, autofocus: true, placeholder: "Présentation" %>
 
-    <%= f.input :address, label: "Adresse :", required: true, autofocus: true, placeholder: "King's Landing", input_html: {id: :adresse} %>
+    <%= f.input :address, label: false, required: true, autofocus: true, placeholder: "Adresse De Votre Pousse", input_html: {id: :adresse} %>
 
-    <%= f.input :email, label: "Adresse électronique principale :", required: true, autofocus: true, placeholder: "tyrion.lannister@lafrenchpousse.fr", input_html: { autocomplete: "nope" }%>
+    <%= f.input :email, label: false, required: true, autofocus: true, placeholder: "Adresse Électronique Principale :", input_html: { autocomplete: "nope" }%>
 
-    <%= f.input :category_id, required: true, collection: @categories, label_method: :first, value_method: :second, label: "Catégorie :" %>
+    <%= f.input :category_id, required: true, prompt: "Sélectionner Votre Catégorie Principale", collection: @categories, label_method: :first, value_method: :second, label: false %>
 
     <%= f.input :photo, required: true %>
     <%= f.input :photo_cache, as: :hidden %>
 
   </div>
 
-  <div class="form-actions">
+  <div class="form-actions bouton-acces-lfp" style="display: flex; justify-content: space-around;">
     <%= f.button :submit %>
   </div>
 <% end %>
