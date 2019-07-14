@@ -13,15 +13,15 @@ environment.plugins.prepend('Provide',
     Popper: ['popper.js', 'default']
   })
 )
-// Enabling native js bootstrap
-environment.loaders.append("bootstrap.native", {
-  test: /bootstrap\.native/,
-  use: {
-    loader: "bootstrap.native-loader",
-    options: {
-      // only: ["alert", "button", "dropdown", "modal", "tooltip"],
-      bsVersion: 4
-    }
-  }
-})
+// // Enabling native js bootstrap
+// environment.loaders.append("bootstrap.native", {
+//   test: /bootstrap\.native/,
+//   use: {
+//     loader: "bootstrap.native-loader",
+//     options: {
+//       // only: ["alert", "button", "dropdown", "modal", "tooltip"],
+//       bsVersion: 4
+//     }
+//   }
+// })
 module.exports = environment
