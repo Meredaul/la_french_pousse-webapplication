@@ -2,11 +2,14 @@ let companyItemsList = document.querySelectorAll('.company_home_item');
 
 companyItemsList.forEach((companyItemList)=>{
   companyItemList.addEventListener('mouseover', (event)=>{
+    companyItemList.style.filter = 'drop-shadow(-3px 5px 2px rgba(0, 0, 0, 0.3))';
     var sisterMarker = document.querySelector(`[data-company_id="${companyItemList.dataset.company_id}"]`);
+    console.log(sisterMarker);
     sisterMarker.style.filter = 'drop-shadow(-3px 5px 2px rgba(0, 0, 0, 0.3))';
     sisterMarker.style.opacity = '1';
   })
   companyItemList.addEventListener('mouseout', (event)=>{
+    companyItemList.style.filter = 'drop-shadow(-2px 3px 1px rgba(0, 0, 0, 0.1))';
     var sisterMarker = document.querySelector(`[data-company_id="${companyItemList.dataset.company_id}"]`);
     sisterMarker.style.filter = 'drop-shadow(-2px 3px 1px rgba(0, 0, 0, 0.1))';
     sisterMarker.style.opacity = '0.75';

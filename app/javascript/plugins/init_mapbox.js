@@ -51,6 +51,14 @@ const initMapbox = () => {
       element.style.height = '28px';
       element.style.filter = 'drop-shadow(-2px 3px 1px rgba(0, 0, 0, 0.1))';
       element.dataset.company_id = `${marker.company_id}`;
+      element.addEventListener('mouseover', (event)=>{
+        element.style.filter = 'drop-shadow(-3px 5px 2px rgba(0, 0, 0, 0.3))';
+        element.style.opacity = '1';
+      })
+      element.addEventListener('mouseout', (event)=>{
+        element.style.filter = 'drop-shadow(-2px 3px 1px rgba(0, 0, 0, 0.1))';
+        element.style.opacity = '0.75';
+      })
 
       let linkToControllerCompanyProfil = document.createElement("a");// js actualisation company profil
       linkToControllerCompanyProfil.setAttribute('data-method', 'get');
