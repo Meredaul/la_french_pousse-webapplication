@@ -1,7 +1,6 @@
 <div id="corps">
   <div class="row">
 
-
     <div class="col-6">
 
       <div id="map" data-company_around_markers="<%= @companies_around_markers.to_json %>" data-personnal_address_marker="<%= @personnal_address_marker.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
@@ -19,7 +18,7 @@
             <div class="liste_entreprises_autour">
               <% @companies_around_grouped.each do |entreprise| %>
                 <%= link_to company_path(entreprise), remote: true do %>
-                  <div class="company_home_item">
+                  <div class="company_home_item" data-company_id="<%= entreprise.id %>">
                     <div><%= image_tag(entreprise.category.icon, class: "company_home_item_icon") %></div>
                     <div><%= entreprise.nom %></div>
                   </div>
@@ -32,7 +31,7 @@
             <div class="liste_entreprises_autour">
               <% @companies_around_grouped[0...5].each do |entreprise| %>
                 <%= link_to company_path(entreprise), remote: true do %>
-                  <div class="company_home_item">
+                  <div class="company_home_item" data-company_id="<%= entreprise.id %>">
                     <div><%= image_tag(entreprise.category.icon, class: "company_home_item_icon") %></div>
                     <div><%= entreprise.nom %></div>
                   </div>
@@ -42,7 +41,7 @@
             <div class="liste_entreprises_autour">
               <% @companies_around_grouped[5...10].each do |entreprise| %>
                 <%= link_to company_path(entreprise), remote: true do %>
-                  <div class="company_home_item">
+                  <div class="company_home_item" data-company_id="<%= entreprise.id %>">
                     <div><%= image_tag(entreprise.category.icon, class: "company_home_item_icon") %></div>
                     <div><%= entreprise.nom %></div>
                   </div>
@@ -59,7 +58,6 @@
 
 
     <div class="col-6">
-
       <div id="profile-pousse-homepage" >
         <% if @companies_around.empty? %>
           <div id="aucune_pousse_profil">

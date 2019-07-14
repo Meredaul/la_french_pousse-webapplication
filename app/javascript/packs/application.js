@@ -2,7 +2,7 @@ import "bootstrap";
 
 import 'mapbox-gl/dist/mapbox-gl.css';
 
-import 'bootstrap.native';
+// import 'bootstrap.native';
 
 
 

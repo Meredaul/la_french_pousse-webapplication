@@ -12,7 +12,7 @@ const initMapbox = () => {
       bounds.extend([marker.lng, marker.lat]);
       bounds.extend([2 * center.lng - marker.lng, 2 * center.lat - marker.lat]);
     });
-    map.fitBounds(bounds, { padding: 50, maxZoom: 14, duration: 0 });
+    map.fitBounds(bounds, { padding: 25, maxZoom: 14, duration: 0 });
   };
 
   if (mapElement) {
@@ -37,6 +37,7 @@ const initMapbox = () => {
 
 // seperate company markers
     const company_around_markers = JSON.parse(mapElement.dataset.company_around_markers);
+
     company_around_markers.forEach((marker) => {
       // const popup = new mapboxgl.Popup().setHTML(marker.infoWindow);
       const element = document.createElement('div');// Create a HTML element for your custom marker
@@ -46,8 +47,10 @@ const initMapbox = () => {
       element.style.backgroundImage = `url("${marker.icon_url}")`;
       element.style.backgroundSize = 'contain';
       element.style.backgroundRepeat = 'no-repeat';
-      element.style.width = '25px';
-      element.style.height = '25px';
+      element.style.width = '28px';
+      element.style.height = '28px';
+      element.style.filter = 'drop-shadow(-2px 3px 1px rgba(0, 0, 0, 0.1))';
+      element.dataset.company_id = `${marker.company_id}`;
 
       let linkToControllerCompanyProfil = document.createElement("a");// js actualisation company profil
       linkToControllerCompanyProfil.setAttribute('data-method', 'get');
@@ -67,7 +70,7 @@ const initMapbox = () => {
         .addTo(map);
     });
 
-    fitMapToMarkers(map, company_around_markers, personnal_address_marker[0]);
+    fitMapToMarkers(map, company_around_markers.slice(0, 10), personnal_address_marker[0]);
   }
 };
 

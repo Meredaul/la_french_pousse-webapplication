@@ -6,8 +6,8 @@ class PagesController < ApplicationController
     current_user_longitude = current_user.longitude
 
     @personnal_address_marker = [{ lat: current_user_latitude, lng: current_user_longitude }]
-    @companies_around = Company.near([current_user_latitude, current_user_longitude], 20, order: :distance)
-    @hash_companies_around_grouped = Company.near([current_user_latitude, current_user_longitude], 20, order: :distance).first(10).group_by(&:category_id)
+    @companies_around = Company.near([current_user_latitude, current_user_longitude], 15, order: :distance)#.where(validated?: true)
+    @hash_companies_around_grouped = Company.near([current_user_latitude, current_user_longitude], 15, order: :distance).first(10).group_by(&:category_id)
     @companies_around_grouped = @hash_companies_around_grouped.map{|category_id, group| group }.flatten
 
 

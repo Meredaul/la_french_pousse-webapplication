@@ -3,20 +3,52 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
+    <div class="row" id="first-row-input">
+      <div class="col-5" id="company-name-column">
+        <div id="company-name-input">
+          <%= f.input :nom, label: false, required: true, autofocus: true, placeholder: "Nom De Votre Pousse", input_html: {class: "company-input"} %>
+        </div>
+      </div>
 
-    <%= f.input :nom, label: false, required: true, autofocus: true, placeholder: "Nom De Votre Pousse" %>
+      <div class="col-7">
+        <div id="company-photo-box">
+          <%= f.input :photo, input_html: { class: 'd-none', id: 'upload-company-photo' }, label_html: { id: 'company-photo-upload' }, label: "📷" %>
+          <%= image_tag "", height: "100px", class: "d-none", id: "photo-preview" %>
+        </div>
+        <%= f.input :photo_cache, as: :hidden %>
+      </div>
+    </div>
 
-    <%= f.input :presentation, label: false, required: true, autofocus: true, placeholder: "Présentation" %>
 
-    <%= f.input :address, label: false, required: true, autofocus: true, placeholder: "Adresse De Votre Pousse", input_html: {id: :adresse} %>
 
-    <%= f.input :email, label: false, required: true, autofocus: true, placeholder: "Adresse Électronique Principale :", input_html: { autocomplete: "nope" }%>
+    <%#= f.input :category_id, required: true, prompt: "Sélectionner Votre Catégorie Principale", collection: @categories, label_method: :first, value_method: :second, label: false, class: "company-input" %>
+    <div class="category-choices">
+      <% Category.all.each do |category| %>
+        <input type="checkbox" class="d-none" value="<%= category.id %>" name="company[category_id]" id="post_category_ids_<%= category.id %>">
+        <!-- post[category_ids][] -->
+        <label for="post_category_ids_<%= category.id %>" class="category-choice">
+          <%= category.name %>
+        </label>
+      <% end %>
+    </div>
 
-    <%= f.input :category_id, required: true, prompt: "Sélectionner Votre Catégorie Principale", collection: @categories, label_method: :first, value_method: :second, label: false %>
 
-    <%= f.input :photo, required: true %>
-    <%= f.input :photo_cache, as: :hidden %>
+    <%= f.input :address, label: false, required: true, autofocus: true, placeholder: "Adresse De Votre Pousse", input_html: {id: :adresse, class: "company-input"} %>
 
+    <div class="row">
+      <div class="col-6">
+        <%= f.input :email, label: false, required: true, autofocus: true, placeholder: "Adresse Électronique", input_html: { autocomplete: "nope" }, input_html: {class: "company-input", id: "company-email-input"} %>
+      </div>
+      <div class="col-6 form-input-moitie">
+        <div id="company-preuve-box">
+          <%= f.input :preuve, input_html: { class: 'd-none', id: 'upload-company-preuve' }, label_html: { id: 'company-preuve-upload', class: "" }, label: "Critères" %>
+            <%#= image_tag "", height: "100px", class: "d-none", id: "photo-preview" %>
+        </div>
+          <%= f.input :preuve_cache, as: :hidden %>
+      </div>
+    </div>
+
+    <%= f.text_area :presentation, label: false, required: true, autofocus: true, placeholder: "Présentation", class: "company-input", id: "company-presentation-input" %>
   </div>
 
   <div class="form-actions bouton-acces-lfp" style="display: flex; justify-content: space-around;">
