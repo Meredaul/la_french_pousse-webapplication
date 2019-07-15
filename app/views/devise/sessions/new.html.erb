@@ -1,4 +1,5 @@
-<div id="bg-image"></div>
+
+<%= image_tag "lyon1_montsdor.jpg", id: "bg-image" %>
 <div id="welcome-page">
 
   <div id="login-form">
@@ -27,6 +28,13 @@
 
   <div id="reste-welcome-page" class="row">
     <div id="reste-welcome-page-gauche" class="col-6">
+      <div id="patriotisme-welcome">
+        <div>
+          <h5>Fait dans les Monts d'Or  Pour les Monts d'Or</h5>
+          <!-- <h5> Pour les Monts d'Or</h5> -->
+        </div>
+        <%= image_tag "france_soulignement.png", height: 20, id: "france-souligne" %>
+      </div>
       <div id="logo-ecriture-welcome">
         <%= image_tag "logo_ecriture.png", style: "width: 40vw;" %>
       </div>
@@ -57,7 +65,13 @@
           <%= f.input :password, label: false, required: true, autofocus: true, placeholder: "Mot de Passe", input_html: { autocomplete: "new-password" }, hint: ("#{@minimum_password_length} caractères minimum" if @minimum_password_length) %>
           <!-- autocomplete: 'nope' -->
 
-          <%= f.input :photo, label: false %>
+          <%#= f.input :photo, label: false %>
+          <%#= f.input :photo_cache, as: :hidden %>
+          <div id="citoyen-photo-box">
+            <p>Télécharger Votre Photo: </p>
+            <%= f.input :photo, input_html: { class: 'd-none', id: 'upload-citoyen-photo' }, label_html: { id: 'citoyen-photo-upload' }, label: "📷" %>
+            <%= image_tag "", height: "50px", class: "d-none", id: "photo-profil-preview" %>
+          </div>
           <%= f.input :photo_cache, as: :hidden %>
 
         </div>

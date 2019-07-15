@@ -1,6 +1,10 @@
-console.log('hello');
+if (document.querySelector('.company_photo_cache')){
 document.querySelector('.company_photo_cache').classList.add('d-none');
-document.querySelector('.company_preuve_cache').classList.add('d-none');
+}
+if (document.querySelector('.company_preuve_cache')){
+  document.querySelector('.company_preuve_cache').classList.add('d-none');
+}
+
 
 
 const displayPreview = (input) => {
@@ -16,8 +20,6 @@ const displayPreview = (input) => {
 }
 const input = document.getElementById('upload-company-photo');
 if (input) {
-  console.log('yes');
-  console.log(input);
   // we add a listener to know when a new picture is uploaded
   input.addEventListener('change', () => {
     // we call the displayPreview function (who retrieve the image url and display it)
