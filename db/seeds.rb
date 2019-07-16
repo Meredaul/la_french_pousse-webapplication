@@ -9,3 +9,7 @@
 Category.create(name: "Fruits & Légumes", icon: 'fruits_et_legumes.png')
 Category.create(name: "Miel", icon: 'miel.png')
 Category.create(name: "Vin", icon: 'vin.png')
+Category.create(name: "Lait", icon: 'lait.png')
+Category.create(name: "Fromage", icon: 'fromage.png')
+Category.create(name: "Viande", icon: 'viande.png')
+
