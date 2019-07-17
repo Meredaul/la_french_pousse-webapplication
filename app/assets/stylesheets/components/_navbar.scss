@@ -140,8 +140,21 @@
     }
     .dropdown-menu {
       z-index: 2;
-      border-radius: 5px;
+      border-radius: 0 0 5px 5px;
       filter: drop-shadow(-2px 3px 1px rgba(0, 0, 0, 0.1));
+      border-style: none;
+    }
+    .dropdown-item{
+      &:hover{
+        cursor: pointer;
+      }
+      &:active{
+        background-color: rgba(0, 0, 0, 0.05);
+      }
     }
   }
+}
+
+.modal-content{
+  border-radius: 5px;
 }
