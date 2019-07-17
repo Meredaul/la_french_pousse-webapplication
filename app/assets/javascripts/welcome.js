@@ -1,5 +1,6 @@
+if (document.querySelector('.user_photo_cache')){
 document.querySelector('.user_photo_cache').classList.add('d-none');
-
+}
 
 const displayPreviewProfil = (input) => {
   if (input.files && input.files[0]) {

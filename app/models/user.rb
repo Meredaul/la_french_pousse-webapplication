@@ -4,6 +4,8 @@ class User < ApplicationRecord
 
   has_many :company_passages, dependent: :destroy
 
+  has_many :messages, dependent: :destroy
+
   def pousses
     Participation.where("user_id = #{self.id}").includes([:pouss]).map(&:pouss)
   end

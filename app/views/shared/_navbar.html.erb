@@ -43,12 +43,19 @@
       </div>
       <div id="creation-pousse" class="lfp-navbar-element">
         <% if current_user.present? %>
-          <!-- Button trigger modal -->
-          <a class="flexalign" data-toggle="modal" data-target="#modal-creation-pousse" >
-            <%#= image_tag "nouvelle_pousse.png", style: "width: 25px;" %>
-            <%= image_tag "plus.png", height: 20 %>
-            <h6>Nouvelle Pousse</h6>
-          </a>
+          <% case current_user.participations.count %>
+            <% when 0 %>
+              <!-- Button trigger modal -->
+              <a class="flexalign" data-toggle="modal" data-target="#modal-creation-pousse" >
+                <%= image_tag "plus.png", height: 20 %>
+                <h6>Nouvelle Pousse</h6>
+              </a>
+            <% else %>
+              <a id="with-one-pousse" class="flexalign" data-toggle="modal" data-target="#modal-creation-pousse" >
+                <%= image_tag "plus.png", height: 20 %>
+                <h6>Nouvelle Pousse</h6>
+              </a>
+            <% end %>
         <% end %>
       </div>
     </div>
@@ -74,8 +81,8 @@
               </div>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-              <!-- <a class="dropdown-item" href="#">Patati</a> -->
-              <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+              <a id="founder-chat-button" class="dropdown-item" data-toggle="modal" data-target="#founder-chat-box">Échanger Avec Le Fondateur</a>
+              <%= link_to "Se Déconnecter", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
             </div>
           </div>
           <% else %>
@@ -123,12 +130,62 @@
             </button>
           </div>
           <div class="modal-body" id="home-pouss-modification-modal-body">
-            <%= render 'companies/form', company: @company %>
+            <%= render 'companies/form', company: company %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+
+  <div class="modal fade" id="founder-chat-box" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header" id="founder-chat-header">
+            <% @chat_room = ChatRoom.last %>
+            <h5 class="modal-title" id="chatfounder-modal-label" ><%= @chat_room.name ? @chat_room.name : "Votre petit mot" %></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="">
+              <span aria-hidden="true" style="margin: 0px;">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" id="chat-founder-modal-body">
+
+            <div class="messages">
+              <% @chat_room.messages.each do |message| %>
+                <%= render "messages/message", message: message,user_is_messages_author: current_user == message.user %>
+              <% end %>
+            </div>
+            <div id="create-message">
+              <%= simple_form_for [ @chat_room, Message.new ], remote: true do |f| %>
+                <%= f.input :content, label: false, placeholder: "Écrivez & Appuyez Sur Entrée" %>
+              <% end %>
+            </div>
+
           </div>
         </div>
       </div>
     </div>
 
-  <% end %>
+
+
+
+<% content_for :after_js do %>
+  <script>
+    scrollLastMessageIntoView();
+    focusOnWrittingMessage();
+    App['chat_room_<%= @chat_room.id %>'] = App.cable.subscriptions.create(
+      { channel: 'ChatRoomsChannel', chat_room_id: <%= @chat_room.id %> },
+      {
+        received: (data) => {
+          if (data.current_user_id !== <%= current_user.id %>) {
+            const messagesContainer = document.querySelector('.messages');
+            messagesContainer.insertAdjacentHTML('beforeend', data.message_partial);
+            scrollLastMessageIntoView();
+          }
+        }
+      }
+    )
+  </script>
+<% end %>
 
 <% end %>
