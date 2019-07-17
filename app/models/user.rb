@@ -1,4 +1,9 @@
 class User < ApplicationRecord
+  after_create :building_founder_conversation
+
+
+  has_one :founder_conversation
+
   has_many :participations
   has_many :companies, through: :participations, source: :pouss, source_type: 'Company'
 
@@ -33,5 +38,10 @@ class User < ApplicationRecord
     user
   end
 
+  private
+
+  def building_founder_conversation
+    self.founder_conversation = FounderConversation.create
+  end
 end
 

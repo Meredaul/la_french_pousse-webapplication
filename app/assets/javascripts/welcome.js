@@ -15,7 +15,6 @@ const displayPreviewProfil = (input) => {
 }
 const inputProfil = document.getElementById('upload-citoyen-photo');
 if (inputProfil) {
-  console.log(inputProfil);
   // we add a listener to know when a new picture is uploaded
   inputProfil.addEventListener('change', () => {
     // we call the displayPreview function (who retrieve the image url and display it)

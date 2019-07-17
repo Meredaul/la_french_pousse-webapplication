@@ -1,7 +1,7 @@
 class Message < ApplicationRecord
   after_create :broadcast_message
 
-  belongs_to :chat_room
+  belongs_to :founder_conversation
   belongs_to :user
   validates :content, presence: true, allow_blank: false
 
@@ -10,7 +10,7 @@ class Message < ApplicationRecord
   end
 
   def broadcast_message
-    ActionCable.server.broadcast("chat_room_#{chat_room.id}", {
+    ActionCable.server.broadcast("founder_conversation_#{founder_conversation.id}", {
       message_partial: ApplicationController.renderer.render(
         partial: "messages/message",
         locals: { message: self, user_is_messages_author: false }

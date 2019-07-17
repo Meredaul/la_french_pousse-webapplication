@@ -17,7 +17,7 @@
   padding: 0;
 }
 
-#create-message{
+#chat-founder-modal-body .create-message{
   padding: 20px;
   .form-group{
     margin: 0;
@@ -31,7 +31,7 @@
 
 #chat-founder-modal-body .message{
   display: flex;
-  margin-bottom: 10px;
+  margin: 10px 0;
   &.right-message {
     flex-direction: row-reverse;
     .message-content{
