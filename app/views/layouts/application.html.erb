@@ -13,7 +13,6 @@
     <body id="normal-body" style="height: 100vh; display: flex; flex-flow: column;">
       <%= render 'shared/navbar' %>
       <%= render 'shared/flashes' %>
-      <%= action_cable_meta_tag %>
       <%= yield %>
       <%= javascript_include_tag 'application' %>
       <%= javascript_pack_tag 'application' %>
