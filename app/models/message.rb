@@ -1,6 +1,8 @@
 class Message < ApplicationRecord
   after_create :broadcast_message
 
+  acts_as_readable on: :created_at
+
   belongs_to :founder_conversation
   belongs_to :user
   validates :content, presence: true, allow_blank: false

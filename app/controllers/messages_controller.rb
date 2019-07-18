@@ -6,6 +6,7 @@ class MessagesController < ApplicationController
     @message.founder_conversation = @founder_conversation
     @message.user = current_user
     if @message.save
+      @message.mark_as_read! for: @message.user
       respond_to do |format|
         format.html { redirect_to founder_conversation_path(@founder_conversation) }
         format.js

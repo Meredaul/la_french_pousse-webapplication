@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 ruby '2.6.3'
 
+gem 'unread'
+
 gem 'geocoder'
 
 gem 'carrierwave', '~> 1.2'

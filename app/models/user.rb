@@ -1,6 +1,10 @@
 class User < ApplicationRecord
   after_create :building_founder_conversation
 
+  acts_as_reader
+  # def self.reader_scope
+  #   where(is_admin: true)
+  # end
 
   has_one :founder_conversation
 

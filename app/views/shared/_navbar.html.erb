@@ -85,7 +85,9 @@
               <% if current_user.admin %>
                 <%= link_to "Échanger Avec Les Citoyens", founder_conversations_path %>
               <% else %>
-                <a id="founder-chat-button" class="dropdown-item" data-toggle="modal" data-target="#founder-chat-box">Échanger Avec Le Fondateur</a>
+                <%= link_to founder_conversation_path(current_user.founder_conversation), method: :put, remote: true, id:"read-message-button" do %>
+                  <a id="founder-chat-button" class="dropdown-item" data-toggle="modal" data-target="#founder-chat-box">Échanger Avec Le Fondateur</a>
+                <% end %>
               <% end %>
 
               <%= link_to "Se Déconnecter", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
@@ -177,7 +179,6 @@
 
 <% content_for :after_js do %>
   <script>
-    scrollLastMessageIntoView();
     focusOnWrittingMessage();
     App['founder_conversation_<%= founder_conversation.id %>'] = App.cable.subscriptions.create(
       { channel: 'FounderConversationsChannel', founder_conversation_id: <%= founder_conversation.id %> },

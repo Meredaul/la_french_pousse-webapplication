@@ -18,6 +18,8 @@ Rails.application.routes.draw do
     resources :company_passages, only: [:create, :destroy], as: :companypassages
   end
 
+  resources :founder_conversations, only: [:update]
+
   resources :founder_conversations, only: [:index] do
     resources :messages, only: [:create]
   end

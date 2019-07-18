@@ -1,19 +1,23 @@
 function scrollLastMessageIntoView() {
-  // var messages = document.querySelectorAll('.message');
-  // var lastMessage = messages[messages.length - 1];
-  // if (lastMessage !== undefined) {
-  //   lastMessage.scrollIntoView();
-  // }
+  console.log('scrolling to last');
 
-  var messagesForFounder = document.querySelectorAll('.conversations-citoyens .message');
-  var lastMessage = messagesForFounder[messagesForFounder.length - 1];
+  var messagesFromCitoyens = document.querySelectorAll('#founder-chat-box .message');
+  var lastMessage = messagesFromCitoyens[messagesFromCitoyens.length - 1];
   if (lastMessage !== undefined) {
     lastMessage.scrollIntoView();
   }
 
-  var messagesForCitoyens = document.querySelectorAll('.message');
-  var lastMessage = messagesForCitoyens[messagesForCitoyens.length - 1];
+  if (founderChatButtonActor){
+    let readMessageButton = document.getElementById('read-message-button');
+    readMessageButton.click();
+  }
+}
+
+function founderScrollLastMessageIntoView(conversation_id){
+  var messagesForFounder = document.querySelectorAll(`.conversations-citoyens [data-conversation="${ conversation_id }"] .message`);
+  var lastMessage = messagesForFounder[messagesForFounder.length - 1];
   if (lastMessage !== undefined) {
     lastMessage.scrollIntoView();
+    console.log('founder scrolling to last');
   }
 }
