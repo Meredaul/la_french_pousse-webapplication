@@ -6,7 +6,7 @@ class User < ApplicationRecord
   #   where(is_admin: true)
   # end
 
-  has_one :founder_conversation
+  has_one :founder_conversation, dependent: :destroy
 
   has_many :participations
   has_many :companies, through: :participations, source: :pouss, source_type: 'Company'
