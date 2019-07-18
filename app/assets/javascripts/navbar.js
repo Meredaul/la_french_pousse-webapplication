@@ -1,7 +1,7 @@
 const founderChatBox = document.getElementById('founder-chat-box');
 
 founderChatBox.addEventListener('transitionstart', (event)=>{
-  scrollLastMessageIntoView()
+  scrollLastMessageIntoView();
 });
 
 // founderChatBox.addEventListener('mouseover', (event)=>{
@@ -12,5 +12,5 @@ founderChatBox.addEventListener('transitionstart', (event)=>{
 //   scrollLastMessageIntoView()
 // });
 
-
+const founderChatButtonActor = document.getElementById('founder-chat-button');
 

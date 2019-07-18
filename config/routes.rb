@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :categories
+
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 
   devise_scope :user do
@@ -11,11 +11,20 @@ Rails.application.routes.draw do
     end
   end
 
+  mount ActionCable.server => "/cable"
+  resources :categories
+
   resources :companies do
     resources :company_passages, only: [:create, :destroy], as: :companypassages
   end
 
-  resources :chat_rooms, only: [:show] do
+  resources :founder_conversations, only: [:update]
+
+  resources :founder_conversations, only: [:index] do
+    resources :messages, only: [:create]
+  end
+
+  resources :founder_conversations, only: [:show] do
     resources :messages, only: [:create]
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

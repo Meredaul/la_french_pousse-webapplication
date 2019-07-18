@@ -1,12 +1,28 @@
-console.log('create.js.erb for message');
+
 <% if @message.errors.any? %>
   //
 <% else %>
-  var messagesContainer = document.querySelector('.messages');
-  messagesContainer.insertAdjacentHTML('beforeend', '<%= j render "message", message: @message, user_is_messages_author: true %>');
-  var contentMessageInput = document.querySelector('#message_content');
-  contentMessageInput.value = '';
-  contentMessageInput.blur();
-  scrollLastMessageIntoView();
+  var messagesContainer = document.querySelector('#founder-chat-box .messages');
+  if (founderChatButtonActor){
+    console.log('citoyens container');
+    messagesContainer.insertAdjacentHTML('beforeend', '<%= j render "message", message: @message, user_is_messages_author: true %>');
+    var contentMessageInputCitoyens = document.querySelector('#founder-chat-box .create-message .form-control');
+    contentMessageInputCitoyens.value = '';
+    scrollLastMessageIntoView();
+
+  } else {
+
+  var messagesContainerFondateur = document.querySelector('.conversations-citoyens .messages');
+  // if (messagesContainerFondateur){
+    console.log('founder container');
+    messagesContainerFondateur.insertAdjacentHTML('beforeend', '<%= j render "message", message: @message, user_is_messages_author: true %>');
+    var contentMessageInputFondateur = document.querySelector('.conversations-citoyens .create-message .form-control');
+    contentMessageInputFondateur.value = '';
+    founderScrollLastMessageIntoView();
+  }
+
+  // contentMessageInputCitoyens.blur();
+  // scrollLastMessageIntoView();
   // focusOnWrittingMessage();
+
 <% end %>
