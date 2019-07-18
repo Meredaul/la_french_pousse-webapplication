@@ -12,13 +12,14 @@
 
   } else {
 
-  var messagesContainerFondateur = document.querySelector('.conversations-citoyens .messages');
+  var messagesContainerFondateur = document.querySelector('.conversations-citoyens [data-conversation="<%= @founder_conversation.id %>"] .messages');
   // if (messagesContainerFondateur){
-    console.log('founder container');
+    console.log('founder container <%= @founder_conversation.id %>');
     messagesContainerFondateur.insertAdjacentHTML('beforeend', '<%= j render "message", message: @message, user_is_messages_author: true %>');
-    var contentMessageInputFondateur = document.querySelector('.conversations-citoyens .create-message .form-control');
+    var contentMessageInputFondateur = document.querySelector('.conversations-citoyens [data-conversation="<%= @founder_conversation.id %>"] .create-message .form-control');
     contentMessageInputFondateur.value = '';
-    founderScrollLastMessageIntoView();
+    console.log(<%= @founder_conversation.id %>);
+    founderScrollLastMessageIntoView(<%= @founder_conversation.id %>);
   }
 
   // contentMessageInputCitoyens.blur();
