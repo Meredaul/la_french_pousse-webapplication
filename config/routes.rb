@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   end
 
   mount ActionCable.server => "/cable"
+
+
   resources :categories
 
   resources :companies do
