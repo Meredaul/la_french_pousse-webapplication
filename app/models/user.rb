@@ -27,6 +27,14 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: [:google_oauth2]
 
   geocoded_by :address
+
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :photo, presence: true
+  validates :address, presence: true
+  validates :email, presence: true
+  validates :password, presence: true
+
   after_validation :geocode, if: :will_save_change_to_address?
 
   def self.from_omniauth(access_token)

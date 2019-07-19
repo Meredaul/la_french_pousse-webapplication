@@ -121,7 +121,7 @@
       }
       #citoyen-photo-box{
         height: 50px;
-        width: 75%;
+        // width: 75%;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -141,7 +141,11 @@
           border-color: #5bc0de;
           border-radius: 5px;
           margin-bottom: 0;
+          margin-right: 75px;
           filter: drop-shadow( 1px 1px 1px rgba(0, 0, 0, 0.3));
+          abbr{
+            display: none;
+          }
           &:hover{
             background-color: rgba(0, 0, 0, 0.05);
             cursor: pointer;
@@ -152,6 +156,7 @@
         #photo-profil-preview{
           filter: drop-shadow( 2px 1px 1px rgba(0, 0, 0, 0.3));
           border-radius: 50%;
+          margin-right: 25px;
         }
       }
     }

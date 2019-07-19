@@ -27,6 +27,7 @@ class PagesController < ApplicationController
 
   def admin
     @yesterday = Date.yesterday
+    # @yesterday = "2019-04-27"
     @unread_messages_foradmin = Message.unread_by User.find_by(admin: true)
   end
 end
