@@ -88,6 +88,10 @@
   flex-wrap: wrap;
   margin: 10px 0 20px 0;
   padding: 0;
+  overflow: scroll;
+  height: 80px;
+  box-shadow: inset 0 -3px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
 }
 
 .category-choice {

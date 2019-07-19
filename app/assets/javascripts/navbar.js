@@ -14,3 +14,13 @@ founderChatBox.addEventListener('transitionstart', (event)=>{
 
 const founderChatButtonActor = document.getElementById('founder-chat-button');
 
+
+
+var formGroupCategoryName = document.querySelector('.modal-footer .category_name');
+var inputFormGroupCategoryName = document.querySelector('.modal-footer .category_name input');
+const boutonPropositionCategorie = document.getElementById('bouton-proposition-categorie');
+boutonPropositionCategorie.addEventListener("click", (event)=>{
+  boutonPropositionCategorie.classList.add('active');
+  inputFormGroupCategoryName.classList.add('d-none');
+  formGroupCategoryName.insertAdjacentHTML('beforeend', '<h6 id="proposition-sent">Votre proposition a été envoyée</h6>')
+})

@@ -121,6 +121,14 @@
           <% @company = Company.new { @categories = Category.all.map { |category| [category.name, category.id]} } %>
           <%= render 'companies/form', company: @company %>
         </div>
+        <div class="modal-footer">
+          <%= simple_form_for(Category.new) do |f| %>
+            <%= f.error_notification %>
+            <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+            <%= f.input :name, label: false, required: true, autofocus: true, placeholder: "Nom D'une Catégorie Manquante" %>
+            <%= f.button :submit, value: "Proposer", type:"button", id:"bouton-proposition-categorie" %>
+          <% end %>
+      </div>
       </div>
     </div>
   </div>
