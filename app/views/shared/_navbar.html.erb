@@ -83,11 +83,15 @@
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
 
               <% if current_user.admin %>
-                <%= link_to "Échanger Avec Les Citoyens", founder_conversations_path %>
+                <%= link_to "Échanger Avec Les Citoyens", founder_conversations_path, class:"dropdown-item" %>
               <% else %>
                 <%= link_to founder_conversation_path(current_user.founder_conversation), method: :put, remote: true, id:"read-message-button" do %>
                   <a id="founder-chat-button" class="dropdown-item" data-toggle="modal" data-target="#founder-chat-box">Échanger Avec Le Fondateur</a>
                 <% end %>
+              <% end %>
+
+              <% if current_user.admin %>
+                <%= link_to "Admin", admin_path, class:"dropdown-item" %>
               <% end %>
 
               <%= link_to "Se Déconnecter", destroy_user_session_path, method: :delete, class: "dropdown-item" %>

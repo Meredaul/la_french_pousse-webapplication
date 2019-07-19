@@ -24,4 +24,9 @@ class PagesController < ApplicationController
 
     @random_company_around = @companies_around.sample
   end
+
+  def admin
+    @yesterday = Date.yesterday
+    @unread_messages_foradmin = Message.unread_by User.find_by(admin: true)
+  end
 end

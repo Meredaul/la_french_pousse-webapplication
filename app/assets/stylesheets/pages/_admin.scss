@@ -1,0 +1,76 @@
+#admin-body{
+  margin: 25px 0;
+}
+.admin-data{
+  color: black;
+  h5{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    height: 50px;
+  }
+  padding: 3px;
+}
+
+.admin-datasets{
+  background-color: rgba(48, 86, 122, 0.7);
+  color: white;
+  padding: 10px 7px;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+}
+.admin-dataset{
+  margin-bottom: 10px;
+}
+
+.admin-dataset-details{
+  background-color: rgba(255, 255, 255, 0.1);
+  margin-left: 10px;
+  padding: 2px;
+  border-radius: 5px;
+}
+
+
+
+
+#admin-communication{
+  box-shadow: -3px 5px 8px rgba(0, 0, 0, 0.1);
+  background-color: rgba(185, 106, 106, 0.7);
+  border-radius: 5px;
+  margin: 25px 0 0 0;
+}
+.admin-message-fromcitoyen{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 10px;
+  h6{
+    margin: 0;
+  }
+}
+
+.admin-message-citoyen{
+  width: 30%;
+  h6{
+    text-align: center;
+  }
+}
+
+.admin-message-content{
+  background-color: rgba(121, 88, 159, 0.7);
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.1));
+  color: white;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  overflow: scroll;
+  padding: 0 25px;
+  border-radius: 25px;
+  p {
+    margin: 3px;
+  }
+}
+
+

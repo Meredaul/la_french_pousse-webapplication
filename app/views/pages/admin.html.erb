@@ -1,0 +1,61 @@
+<!-- USERS - COMPANIES - COMPANYCATEGORIES - MESSAGES -->
+
+<div id="admin-body">
+  <div class="row">
+    <div class="admin-data col-4">
+      <h5>Citoyens</h5>
+      <div class="admin-datasets">
+        <% User.select{|user| user.created_at.strftime("%Y-%m-%d").to_date >= @yesterday.to_date}. each do |nouveau_citoyen| %>
+          <div class="admin-dataset">
+            <h6><%= nouveau_citoyen.first_name %> <%= nouveau_citoyen.last_name %></h6>
+            <div class="admin-dataset-details">
+              <%= nouveau_citoyen.address %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="admin-data col-4">
+      <h5>Entreprises</h5>
+      <div class="admin-datasets">
+        <% Company.select{|company| company.created_at.strftime("%Y-%m-%d").to_date >= @yesterday.to_date}. each do |nouvelle_entreprise| %>
+          <div class="admin-dataset">
+            <h6><%= nouvelle_entreprise.nom %></h6>
+            <div class="admin-dataset-details">
+              <%= nouvelle_entreprise.category.name %>
+              <%= nouvelle_entreprise.address %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="admin-data col-4">
+      <h5>Categories d'Entreprise</h5>
+      <div class="admin-datasets">
+        <% Category.select{|category| category.created_at.strftime("%Y-%m-%d").to_date >= @yesterday.to_date}. each do |nouvelle_categorie| %>
+          <div class="admin-dataset">
+            <h6><%= nouvelle_categorie.name %></h6>
+            <div class="admin-dataset-details">
+            <%# nouvelle_categorie. %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" id="admin-communication">
+
+    <% @unread_messages_foradmin.each do |message| %>
+      <div class="admin-message-fromcitoyen">
+        <div class="admin-message-citoyen">
+          <h6><%= message.user.first_name %></h6>
+        </div>
+        <div class="admin-message-content">
+          <p><%= message.content %></p>
+        </div>
+      </div>
+    <% end %>
+
+  </div>
+</div>

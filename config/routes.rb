@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/admin', to: 'pages#admin', as: 'admin'
+
   mount ActionCable.server => "/cable"
 
 
