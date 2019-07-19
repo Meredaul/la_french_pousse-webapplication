@@ -40,10 +40,10 @@ class CompaniesController < ApplicationController
         creation_participation = Participation.new(pouss: @company, user: current_user, admin: true)
         creation_participation.save
 
-        format.html { redirect_to :authenticated_root, notice: 'Company was successfully created.' }
+        format.html { redirect_to :authenticated_root, notice: 'Bravo ! Vous avez créé votre nouvelle Pousse.' }
         format.json { render :show, status: :created, location: @company }
       else
-        format.html { render :authenticated_root, notice: "Counldn't create Company" }
+        format.html { redirect_to :authenticated_root, notice: "Création impossible, vous n'avez probablement pas rempli tous les champs du formulaire." }
         # format.json { render json: @company.errors, status: :unprocessable_entity }
       end
     end
