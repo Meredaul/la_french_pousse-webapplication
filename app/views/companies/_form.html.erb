@@ -23,7 +23,7 @@
 
     <%#= f.input :category_id, required: true, prompt: "Sélectionner Votre Catégorie Principale", collection: @categories, label_method: :first, value_method: :second, label: false, class: "company-input" %>
     <div class="category-choices">
-      <% Category.all.each do |category| %>
+      <% Category.where(validated: true).each do |category| %>
         <input type="checkbox" class="d-none" value="<%= category.id %>" name="company[category_id]" id="post_category_ids_<%= category.id %>">
         <!-- post[category_ids][] -->
         <label for="post_category_ids_<%= category.id %>" class="category-choice">
