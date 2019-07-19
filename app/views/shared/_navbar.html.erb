@@ -86,7 +86,7 @@
                 <%= link_to "Échanger Avec Les Citoyens", founder_conversations_path, class:"dropdown-item" %>
               <% else %>
                 <%= link_to founder_conversation_path(current_user.founder_conversation), method: :put, remote: true, id:"read-message-button" do %>
-                  <a id="founder-chat-button" class="dropdown-item" data-toggle="modal" data-target="#founder-chat-box">Échanger Avec Le Fondateur</a>
+                  <a id="founder-chat-button" class="dropdown-item" data-toggle="modal" data-target="#founder-chat-box">Échanger Avec Laury</a>
                 <% end %>
               <% end %>
 
