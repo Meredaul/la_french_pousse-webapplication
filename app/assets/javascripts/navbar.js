@@ -22,8 +22,11 @@ var inputFormGroupCategoryName = document.querySelector('.modal-footer .category
 const boutonPropositionCategorie = document.getElementById('bouton-proposition-categorie');
 if(boutonPropositionCategorie){
   boutonPropositionCategorie.addEventListener("click", (event)=>{
-    boutonPropositionCategorie.classList.add('active');
+    // boutonPropositionCategorie.classList.add('active');
+    boutonPropositionCategorie.style.opacity = '0';
     inputFormGroupCategoryName.classList.add('d-none');
     formGroupCategoryName.insertAdjacentHTML('beforeend', '<h6 id="proposition-sent">Votre proposition a été envoyée</h6>')
+    document.querySelector(".modal-footer h6").style.fontWeight = '300';
+    document.querySelector(".modal-footer h6").style.margin = '5px';
   })
 }

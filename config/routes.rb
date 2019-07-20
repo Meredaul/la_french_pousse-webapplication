@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   mount ActionCable.server => "/cable"
 
 
-  resources :categories
+  resources :categories, only: [:create]
 
   resources :companies , only: [:create, :update, :show] do
     resources :company_passages, only: [:create, :destroy], as: :companypassages
