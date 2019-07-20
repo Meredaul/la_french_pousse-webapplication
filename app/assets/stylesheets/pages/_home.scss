@@ -134,24 +134,55 @@ a {
 }
 
 #company-profil-information-container {
-  padding: 15px;
   flex: 1 1 auto;
-  display: flex;
-  flex-flow: column;
+  font-weight: 300;
+  // padding: 15px;
+  // display: flex;
+  // flex-flow: column;
+  #presentation-profil-entreprise {
+    height: 34%;
+    margin: 0px 25px;
+    font-size: 15px;
+  }
   .preuve-sociale-pousse {
+    height: 66%;
+    padding: 25px 0;
     display: flex;
     flex-flow: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     p {
       margin: 0px;
       padding: 10px 0px;
     }
   }
-  .presentation-profil-entreprise {
-    flex: 1 1 auto;
-    margin: 5px 0px;
-    padding: 10px 15px;
+
+}
+
+.bouton-je-connais{
+  padding: 10px 25px;
+  border-radius: 5px;
+  color: white;
+  background-color: rgba(104, 210, 169, 0.75);
+  filter: drop-shadow(-3px 3px 3px rgba(0, 0, 0, 0.1));
+  border-style: none;
+  font-weight: 300;
+  &:hover{
+    background-color: rgba(104, 210, 169, 1);
+    filter: drop-shadow(-1px 1px 1px rgba(0, 0, 0, 0.1));
   }
 }
 
+.bouton-je-ne-connais{
+  padding: 10px 25px;
+  border-radius: 5px;
+  color: white;
+  background-color: rgba(121, 88, 159, 0.5);
+  filter: drop-shadow(-3px 3px 3px rgba(0, 0, 0, 0.1));
+  border-style: none;
+  font-weight: 300;
+  &:hover{
+    background-color: rgba(104, 210, 169, 1);
+    filter: drop-shadow(-1px 1px 1px rgba(0, 0, 0, 0.1));
+  }
+}

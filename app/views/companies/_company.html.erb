@@ -21,20 +21,20 @@
 
 
   <div id="company-profil-information-container">
+    <div id="presentation-profil-entreprise">
+      <p><%= simple_format(company.presentation) %></p>
+    </div>
     <div class="preuve-sociale-pousse">
       <!-- BOUTON PASSAGE -->
       <div class="bouton bouton-company_passage">
         <% if company_passage_personnel_precedent %>
-          <%= link_to 'Inconnue', company_companypassage_path(company, company_passage_personnel_precedent), {class:'btn btn-success', method: :delete, remote: true} %>
+          <%= link_to 'Inconnue', company_companypassage_path(company, company_passage_personnel_precedent), {class:'btn btn-success bouton-je-ne-connais', method: :delete, remote: true} %>
         <% else %>
-          <%= button_to 'Connue', company_companypassages_path(company), {class:"bouton-company_passage connu btn btn-info",  method: :post, remote:true} %>
+          <%= button_to 'Connue', company_companypassages_path(company), {class:"bouton-company_passage bouton-je-connais",  method: :post, remote:true} %>
         <% end %>
       </div>
       <!-- COMPTEUR PREUVE SOCIALE -->
       <p class='compteur_preuve_sociale' ><%= compteur_passage %><%= compteur_passage <= 1 ? " citoyen connait" : " citoyens connaissent" %> cette pousse !</p>
-    </div>
-    <div class="presentation-profil-entreprise">
-      <p><%= simple_format(company.presentation) %></p>
     </div>
   </div>
 
