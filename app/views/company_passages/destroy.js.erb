@@ -1,8 +1,10 @@
 
 // Mise à jour - nombre de preuve sociale
 var compteurPreuveSociale = document.querySelector(".compteur_preuve_sociale");
-compteurPreuveSociale.outerHTML = "<p class='compteur_preuve_sociale' ><%= @company.company_passages.count %><%= @company.company_passages.count <= 1 ? ' citoyen connait' : ' citoyens connaissent' %></p>"
+compteurPreuveSociale.outerHTML = "<p class='compteur_preuve_sociale' ><%= @company.company_passages.count %><%= @company.company_passages.count <= 1 ? ' citoyen connait' : ' citoyens connaissent' %> cette pousse !</p>"
 
 // Mise à jour - bouton
-var homeProfilEntreprise = document.querySelector(".bouton-company_passage");
+var homeProfilEntreprise = document.querySelector("#company-profil-information-container .bouton-company_passage");
 homeProfilEntreprise.outerHTML = '<%= j render(partial: "shared/bouton_entreprise_passage.html.erb", locals: {@company_passage => @company_passage, @company => @company} ) %>';
+// homeProfilEntreprise.classList.add('bouton-je-connais');
+// homeProfilEntreprise.classList.remove('bouton-je-ne-connais');
