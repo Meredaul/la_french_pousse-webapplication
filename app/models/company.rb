@@ -7,7 +7,6 @@ class Company < ApplicationRecord
   belongs_to :category
 
   mount_uploader :photo, PhotoUploader
-  mount_uploader :preuve, PreuveUploader
 
   geocoded_by :address
 

@@ -15,6 +15,7 @@
 
 .company-input{
   border-radius: 5px;
+  font-weight: 300;
 }
 
 #first-row-input{
@@ -73,7 +74,12 @@
   border-style: solid;
   border-color:  #5bc0de;
   border-width: 1px;
-  border-radius: 50%;
+  border-radius: 5px;
+  width: 75%;
+  text-align: center;
+  abbr{
+    display: none;
+  }
   &:hover {
     opacity: 0.95;
     transform: scale(0.99);
@@ -81,12 +87,17 @@
   }
 }
 
-
+#category-choices-label{
+  font-weight: 300;
+  align-items: center;
+  opacity: 0.8;
+}
 .category-choices {
+
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  margin: 10px 0 20px 0;
+  margin: 0px 0 20px 0;
   padding: 0;
   overflow: scroll;
   height: 80px;
@@ -114,29 +125,8 @@
   }
 }
 
-#company-preuve-box{
-  margin: 0;
-}
-#company-preuve-upload{
-  font-size: 20px;
-  font-weight: 300;
-  color: rgba(0, 0, 0, 0.7);
-  background-color: #b7b7b7;
-  border-style: solid;
-  border-color:  #5bc0de;
-  border-width: 1px;
-  border-radius: 5px;
-  margin: 0;
-  padding: 2px 40px;
-  opacity: .4;
-  filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.3));
-  &:hover{
-    opacity: 1;
-    color: white;
-    transform: scale(0.99);
-    cursor: pointer;
-    filter: drop-shadow(0px 0px 0px rgba(0, 0, 0, 0.3));
-  }
+#company-preuve-input{
+
 }
 
 

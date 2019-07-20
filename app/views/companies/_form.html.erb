@@ -19,10 +19,9 @@
       </div>
     </div>
 
-
-
-    <%#= f.input :category_id, required: true, prompt: "Sélectionner Votre Catégorie Principale", collection: @categories, label_method: :first, value_method: :second, label: false, class: "company-input" %>
+    <h6 id="category-choices-label">Categorie :</h6>
     <div class="category-choices">
+      <!-- <h6 id="category-choices-label">Categorie :</h6> -->
       <% Category.where(validated: true).each do |category| %>
         <input type="checkbox" class="d-none" value="<%= category.id %>" name="company[category_id]" id="post_category_ids_<%= category.id %>">
         <!-- post[category_ids][] -->
@@ -32,19 +31,14 @@
       <% end %>
     </div>
 
-
     <%= f.input :address, label: false, required: true, autofocus: true, placeholder: "Adresse De Votre Pousse", input_html: {id: :adresse, class: "company-input"} %>
 
     <div class="row">
       <div class="col-6">
         <%= f.input :email, label: false, required: true, autofocus: true, placeholder: "Adresse Électronique", input_html: { autocomplete: "nope" }, input_html: {class: "company-input", id: "company-email-input"} %>
       </div>
-      <div class="col-6 form-input-moitie">
-        <div id="company-preuve-box">
-          <%= f.input :preuve, input_html: { class: 'd-none', id: 'upload-company-preuve' }, label_html: { id: 'company-preuve-upload', class: "" }, label: "Critères" %>
-            <%#= image_tag "", height: "100px", class: "d-none", id: "photo-preview" %>
-        </div>
-          <%= f.input :preuve_cache, as: :hidden %>
+      <div class="col-6">
+        <%= f.input :preuve, label: false, required: true, autofocus: true, placeholder: "n• siret", input_html: { autocomplete: "nope" }, input_html: {class: "company-input", id: "company-preuve-input"} %>
       </div>
     </div>
 

@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
   resources :categories
 
-  resources :companies , only: [:create, :update] do
+  resources :companies , only: [:create, :update, :show] do
     resources :company_passages, only: [:create, :destroy], as: :companypassages
   end
 

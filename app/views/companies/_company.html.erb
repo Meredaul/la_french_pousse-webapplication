@@ -34,7 +34,7 @@
       <p class='compteur_preuve_sociale' ><%= compteur_passage %><%= compteur_passage <= 1 ? " citoyen connait" : " citoyens connaissent" %> cette pousse !</p>
     </div>
     <div class="presentation-profil-entreprise">
-      <p><%= company.presentation %></p>
+      <p><%= simple_format(company.presentation) %></p>
     </div>
   </div>
 
