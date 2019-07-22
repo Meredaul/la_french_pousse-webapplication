@@ -1,0 +1,4 @@
+
+var homeProfilTeam = document.querySelector("#company-profil-header .home-add-team");
+homeProfilTeam.outerHTML = '<%= j render(partial: "shared/bouton_entreprise_team.html.erb", locals: { @company => @company} ) %>';
+

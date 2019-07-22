@@ -1,2 +1,3 @@
 class Pouss < ApplicationRecord
+
 end

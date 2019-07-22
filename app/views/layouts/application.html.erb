@@ -10,7 +10,7 @@
     <%= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
   </head>
   <% if current_user.present? %>
-    <body id="normal-body" style="height: 100vh; display: flex; flex-flow: column;">
+    <body id="normal-body" style="">
       <%= render 'shared/navbar' %>
       <%= render 'shared/flashes' %>
       <%= yield %>

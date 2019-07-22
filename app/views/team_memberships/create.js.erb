@@ -1,0 +1,5 @@
+console.log('js');
+
+// Mise à jour - bouton
+var homeProfilTeam = document.querySelector("#company-profil-header .home-add-team");
+homeProfilTeam.outerHTML = '<%= j render(partial: "shared/bouton_entreprise_team.html.erb", locals: {@team_membership => @team_membership, @company => @team_membership.pouss} ) %>';

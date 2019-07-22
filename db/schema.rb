@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_20_090648) do
+ActiveRecord::Schema.define(version: 2019_07_22_070408) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,6 +89,16 @@ ActiveRecord::Schema.define(version: 2019_07_20_090648) do
     t.index ["reader_type", "reader_id"], name: "index_read_marks_on_reader_type_and_reader_id"
   end
 
+  create_table "team_memberships", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "pouss_type"
+    t.bigint "pouss_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pouss_type", "pouss_id"], name: "index_team_memberships_on_pouss_type_and_pouss_id"
+    t.index ["user_id"], name: "index_team_memberships_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -121,4 +131,5 @@ ActiveRecord::Schema.define(version: 2019_07_20_090648) do
   add_foreign_key "messages", "founder_conversations"
   add_foreign_key "messages", "users"
   add_foreign_key "participations", "users"
+  add_foreign_key "team_memberships", "users"
 end

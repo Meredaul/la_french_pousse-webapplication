@@ -1,0 +1,68 @@
+#team-title{
+  margin: 25px 0 5px 0;
+  display: flex;
+  justify-content: space-around;
+  h5{
+    background-color: rgba(91, 192, 222, .7);
+    color: white;
+    border-radius: 5px;
+    padding: 10px 5px 10px 0;
+    margin: 0;
+    width: 50%;
+    text-align: center;
+  }
+}
+
+.team-pousses{
+  padding: 15px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+
+.team-pousse-partial {
+  height: 250px;
+  flex: 0 0 32%;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  flex-flow: column;
+  border-radius: 5px;
+}
+
+.cover-title-pousse {
+  width: 100%;
+  height: 80px;
+}
+.pousse-cover-overlay{
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+  align-items: center;
+  padding-top: 25px;
+  p{
+    font-size: 10px;
+    font-weight: 300;
+  }
+}
+
+.pousse-presentation{
+  height: 30px;
+  margin: 5px 15px;
+  font-weight: 300;
+  font-size: 10px;
+  p{
+    margin: 0;
+  }
+}
+
+.pousse-publications{
+  background-color: white;
+  padding: 3px 5px;
+  flex: 1 1 auto;
+}

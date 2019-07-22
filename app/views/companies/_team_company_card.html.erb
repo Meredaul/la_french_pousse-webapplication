@@ -1,0 +1,20 @@
+
+
+<div class="team-pousse-partial">
+
+  <div class="cover-title-pousse", style="background-image: url('<%= company.photo %>');background-repeat: no-repeat;background-position: center;background-size: cover;">
+    <div class="pousse-cover-overlay">
+      <h2><%= company.nom %></h2>
+      <p><%= company.category.name %> (<%= company.address.split(",")[1].strip.capitalize %>)</p>
+    </div>
+  </div>
+
+  <div class="pousse-presentation">
+    <p><%= simple_format(company.presentation.strip) %></p>
+  </div>
+
+  <div class="pousse-publications">
+    <p>PUBLICATIONS</p>
+  </div>
+</div>
+

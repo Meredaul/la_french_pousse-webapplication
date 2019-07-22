@@ -1,6 +1,7 @@
 <!-- declarations variables -->
 <% company_passage_personnel_precedent = company.company_passages.find { |passage| passage.user == current_user } %>
 <% compteur_passage = company.company_passages.count %>
+<% already_in_team = current_user.team_memberships.find{|tm| tm.pouss == company} %>
 
 
 <div id="profile-pousse-homepage-partial">
@@ -10,6 +11,17 @@
   </div>
 
   <div id="company-profil-header">
+    <div class="home-add-team">
+      <% if already_in_team %>
+        <%= link_to team_membership_path(already_in_team), remote: true, method: :delete do %>
+          <div class="remove-company-team">-</div>
+        <% end %>
+      <% else %>
+        <%= link_to company_team_memberships_path(company), remote: true, method: :post do %>
+          <div class="add-company-team">+</div>
+        <% end %>
+      <% end %>
+    </div>
     <div>
       <h2><%= company.nom %></h2>
       <p><%= company.category.name %> (<%= company.address.split(",")[1].strip.capitalize %>)</p>

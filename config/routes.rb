@@ -18,8 +18,11 @@ Rails.application.routes.draw do
 
   resources :categories, only: [:create]
 
+  resources :team_memberships, only: [:index, :destroy]
+
   resources :companies , only: [:create, :update, :show] do
     resources :company_passages, only: [:create, :destroy], as: :companypassages
+    resources :team_memberships, only: [:create]
   end
 
   resources :founder_conversations, only: [:update]

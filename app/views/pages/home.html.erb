@@ -1,4 +1,10 @@
+
 <div id="corps">
+  <%= link_to "#", class:"home-access-button" do %>
+    <div class="home-recherche-button">
+      <!-- <p>E</p><p>Q</p><p>U</p><p>I</p><p>P</p><p>E</p> -->
+    </div>
+  <% end %>
   <div class="row">
 
     <div class="col-6">
@@ -57,7 +63,7 @@
     </div>
 
 
-    <div class="col-6">
+    <div class="col-6 right-home-column">
       <div id="profile-pousse-homepage" >
         <% if @companies_around.empty? %>
           <div id="aucune_pousse_profil">
@@ -72,4 +78,10 @@
 
 
   </div>
+  <%= link_to team_memberships_path, class:"home-access-button" do %>
+    <div class="home-team-button">
+      <p>E</p><p>Q</p><p>U</p><p>I</p><p>P</p><p>E</p>
+    </div>
+  <% end %>
 </div>
+
