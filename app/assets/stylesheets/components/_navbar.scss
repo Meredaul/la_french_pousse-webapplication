@@ -136,9 +136,7 @@
       margin: 8px 0px;
     }
 
-    .avatar-photo-profil {
-      border-radius: 50%;
-    }
+
     .dropdown-menu {
       z-index: 2;
       border-radius: 0 0 5px 5px;
@@ -154,6 +152,11 @@
       }
     }
   }
+}
+.avatar-photo-profil {
+  border-radius: 50%;
+  filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.1));
+  border: 1px solid white;
 }
 
 .modal-content{

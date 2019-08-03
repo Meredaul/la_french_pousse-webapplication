@@ -1,4 +1,6 @@
 class Company < ApplicationRecord
+  has_many :publications, as: :pouss
+
   has_many :participations, as: :pouss
   has_many :users, through: :participations, as: :pouss
 

@@ -8,7 +8,7 @@ class MessagesController < ApplicationController
     if @message.save
       @message.mark_as_read! for: @message.user
       respond_to do |format|
-        format.html { redirect_to founder_conversation_path(@founder_conversation) }
+        # format.html { redirect_to founder_conversation_path(@founder_conversation) }
         format.js
       end
     else

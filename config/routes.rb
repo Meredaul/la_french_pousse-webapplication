@@ -8,8 +8,10 @@ Rails.application.routes.draw do
     end
     unauthenticated :user do
       root to: "devise/sessions#new", as: :unauthenticated_root
+      # get 'users/sign_in', to: "devise/sessions#new", as: :unauthenticated_root
     end
   end
+  # il faut juste améliorer 'users/sign_in view and refocalisant, controllant les verts etc'
 
   get '/admin', to: 'pages#admin', as: 'admin'
 
@@ -20,9 +22,12 @@ Rails.application.routes.draw do
 
   resources :team_memberships, only: [:index, :destroy]
 
+  resources :publications, only: [:destroy]
+
   resources :companies , only: [:create, :update, :show] do
     resources :company_passages, only: [:create, :destroy], as: :companypassages
     resources :team_memberships, only: [:create]
+    resources :publications, only: [:create]
   end
 
   resources :founder_conversations, only: [:update]

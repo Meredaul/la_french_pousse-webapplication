@@ -2,5 +2,13 @@
 
 <p>patati patata</p>
 
-<%= link_to 'Edit', edit_company_path(@company) %> |
-<%= link_to 'Back', companies_path %>
+<div class="row">
+  <div class="col-5">
+
+  </div>
+  <div class="col-7">
+    <div class="gestion-company-partiel container">
+      <%= render @company %>
+    </div>
+  </div>
+</div>

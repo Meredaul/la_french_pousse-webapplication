@@ -1,0 +1,23 @@
+console.log('created');
+
+
+<% if @publication.errors.any? %>
+  //
+<% else %>
+  var publicationsContainer = document.querySelector('#profile-pousse-homepage .home-company-publications');
+  console.log(publicationsContainer);
+  if (publicationsContainer){
+    console.log('publications container');
+    publicationsContainer.insertAdjacentHTML('beforeend', '<%= j render "publication", publication: @publication, user_is_publication_author: true, author_is_company_admin: @publication.pouss.users.include?(@publication.user), publication_is_major: @publication.major_publication %>');
+    var contentMessageInputCitoyens = document.querySelector('#publication_content');
+    contentMessageInputCitoyens.value = '';
+    scrollLastPublicationIntoView();
+
+  }
+
+
+  // contentMessageInputCitoyens.blur();
+  // scrollLastMessageIntoView();
+  // focusOnWrittingMessage();
+
+<% end %>

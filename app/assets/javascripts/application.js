@@ -7,3 +7,4 @@
 //= require chat_focus
 //= require navbar
 //= require conversations_citoyens
+//= require publication_scroll

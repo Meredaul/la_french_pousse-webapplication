@@ -30,10 +30,14 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuButton">
                   <% current_user.companies.each do |company| %>
-                    <a class="flexalign" data-toggle="modal" data-target="#modal-modification-company-<%= company.id %>" >
+                    <!-- <a class="flexalign dropdown-item" data-toggle="modal" data-target="#modal-modification-company-<%= company.id %>" >
+                      <%#= image_tag "pousse.png", style: "width: 15px;" %>
+                      <p style="margin: 0;"><%= company.nom %></p>
+                    </a> -->
+                    <%= link_to company_path(company), class:"flexalign dropdown-item" do %>
                       <%= image_tag "pousse.png", style: "width: 15px;" %>
-                      <p><%= company.nom %></p>
-                    </a>
+                      <p style="margin: 0;"><%= company.nom %></p>
+                    <% end %>
                   <% end %>
                 </div>
               </div>

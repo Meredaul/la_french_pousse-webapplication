@@ -9,12 +9,23 @@
     </div>
   </div>
 
-  <div class="pousse-presentation">
-    <p><%= simple_format(company.presentation.strip) %></p>
+<!--   <div class="pousse-presentation">
+    <p><%#= simple_format(company.presentation.strip) %></p>
+  </div> -->
+
+  <div class="pousse-publication">
+    <div class="pousse-publications">
+      <% company.publications.order(:created_at).select(&:visible).each do |publication| %>
+        <%= render "publications/publication", publication: publication, user_is_publication_author: current_user == publication.user, author_is_company_admin: publication.pouss.users.include?(publication.user), publication_is_major: publication.major_publication, class:"publication" %>
+      <% end %>
+    </div>
+    <div class="pousse-create-publication">
+      <%= simple_form_for [ company, Publication.new ], remote: true do |f| %>
+        <%= f.input :content, label: false, placeholder: "Écrivez & Appuyez Sur Entrée" %>
+      <% end %>
+    </div>
+
   </div>
 
-  <div class="pousse-publications">
-    <p>PUBLICATIONS</p>
-  </div>
 </div>
 

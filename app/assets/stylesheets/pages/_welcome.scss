@@ -197,10 +197,13 @@
       flex-flow: column;
       justify-content: space-between;
       align-items: center;
-      height: 10vh;
+      height: 15vh;
       font-weight: 300;
       color: rgba(0, 0, 0, 0.75);
-      filter: drop-shadow(-3px 2px 3px rgba(0, 0, 0, 0.1));
+      filter: drop-shadow(-3px 2px 3px rgba(0, 0, 0, 0.2));
+      h5{
+        font-weight: 300;
+      }
       #france-souligne{
         border-radius: 5px;
         // filter: drop-shadow(-3px 2px 3px rgba(0, 0, 0, 0.1));

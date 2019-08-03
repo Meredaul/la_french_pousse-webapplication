@@ -13,6 +13,7 @@ class CompaniesController < ApplicationController
   def show
     respond_to do |format|
       format.js { render action: 'show.js.erb' }
+      format.html
     end
   end
 

@@ -1,0 +1,26 @@
+<% if publication_is_major %>
+  <div class="major-publication">
+    <div class="major-publication-content">
+      <p><%= publication.content %></p>
+    </div>
+  </div>
+
+<% elsif author_is_company_admin %>
+  <div class="publication <%= user_is_publication_author ? "right-publication" : "" %> admin-publication" >
+    <%#= cl_image_tag publication.pouss.photo, width:25, height:25, crop: :fill, gravity: :center, class: "avatar-photo-profil" %>
+    <div class="publication-admin-space"></div>
+    <div class="publication-content">
+      <p><%= publication.content %></p>
+    </div>
+  </div>
+
+<% else %>
+  <div class="publication <%= user_is_publication_author ? "right-publication" : "" %>">
+    <%= cl_image_tag publication.user.photo, width:25, height:25, crop: :fill, gravity: :face, class: "avatar-photo-profil" %>
+    <div class="publication-space"></div>
+    <div class="publication-content">
+      <p><%= publication.content %></p>
+    </div>
+  </div>
+
+<% end %>

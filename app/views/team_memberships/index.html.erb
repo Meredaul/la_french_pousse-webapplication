@@ -1,5 +1,5 @@
 <div id="team-title">
-  <h5>Vous avez <%= @team_companies.count %> pousses dans votre équipe !</h5>
+  <h5>Vous avez <%= @team_companies.count %> <%= @team_companies.count <= 1 ? "pousse" : "pousses" %> dans votre équipe !</h5>
 </div>
 
 <div class="team-pousses">

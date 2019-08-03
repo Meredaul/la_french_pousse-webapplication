@@ -2,9 +2,9 @@
 
 <div class="bouton bouton-company_passage">
     <% if @company_passage %>
-      <%= link_to 'Inconnue', company_companypassage_path(@company, @company_passage), {class:'bouton-company_passage bouton-je-ne-connais', method: :delete, remote: true} %>
+      <%= link_to 'Je connais', company_companypassage_path(@company, @company_passage), {class:'bouton-company_passage bouton-je-ne-connais', method: :delete, remote: true} %>
     <% else %>
-      <%= link_to 'Connue', company_companypassages_path(@company), {class:"bouton-company_passage bouton-je-connais",  method: :post, remote:true} %>
+      <%= link_to 'Je connais destroy path', company_companypassages_path(@company), {class:"bouton-company_passage bouton-je-connais",  method: :post, remote:true} %>
   <% end %>
 </div>
 

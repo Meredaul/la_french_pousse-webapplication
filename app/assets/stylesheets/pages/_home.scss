@@ -85,12 +85,13 @@
   //     cursor: pointer;
   //   }
   // }
-  .row{
+  >.row{
     height: 100%;
     width: 95%;
     // flex: 1 1 auto;
   }
   .row > .col-6 {
+    height: 100%;
     padding: 0px 15px;
   }
 }
@@ -174,7 +175,7 @@ a {
 #cover-company-profil-image {
   width: 100%;
   // flex: 1 1 auto;
-  height: 200px;
+  height: 180px;
   object-fit: cover;
 }
 
@@ -182,12 +183,11 @@ a {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  filter: drop-shadow(-2px 2px 2px rgba(0, 0, 0, 0.1));
 }
 .add-company-team{
   width: 30px;
   height: 30px;
-  background-color: rgba(91, 192, 222, 1);
+  background-color: rgba(0, 0, 0, 0.2);
   color: white;
   display: flex;
   justify-content: space-around;
@@ -195,33 +195,47 @@ a {
   border-radius: 5px;
   font-weight: 300;
   font-size: 25px;
+  filter: drop-shadow(-1px 1px 1px rgba(0, 0, 0, 0.1));
+  box-shadow: -2px 2px 2px rgba(0, 0, 0, 0.05);
   &:hover{
     transform: scale(0.97);
+    box-shadow: -0px 0px 0px rgba(0, 0, 0, 0.05);
+    background-color: rgba(91, 192, 222, .85);
+  }
+  &:active{
+    transform: scale(0.95);
     filter: drop-shadow(-0px 0px 0px rgba(0, 0, 0, 0.1));
-    background-color: rgba(91, 192, 222, 0.85);
+    background-color: rgba(91, 192, 222, 1);
   }
 }
 .remove-company-team{
-  width: 25px;
-  height: 25px;
-  background-color: rgba(121, 88, 159, 0.7);
+  width: 30px;
+  height: 30px;
+  background-color: rgba(91, 192, 222, .85);
   color: white;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding-bottom: 3px;
   border-radius: 5px;
   font-weight: 300;
-  font-size: 20px;
+  font-size: 25px;
+  filter: drop-shadow(-1px 1px 1px rgba(0, 0, 0, 0.1));
+  box-shadow: -2px 2px 2px rgba(0, 0, 0, 0.05);
   &:hover{
     transform: scale(0.97);
+    box-shadow: -0px 0px 0px rgba(0, 0, 0, 0.05);
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+  &:active{
+    transform: scale(0.95);
     filter: drop-shadow(-0px 0px 0px rgba(0, 0, 0, 0.1));
-    background-color: rgba(121, 88, 159, 0.5);
+    background-color: rgba(0, 0, 0, 0.25);
   }
 }
 #company-profil-header {
   background: white;
-  padding: 7px 55% 5px 15px;
+  height: 47px;
+  padding: 7px 15px 5px 15px;
   display: flex;
   // justify-content: space-between;
   align-items: center;
@@ -256,59 +270,141 @@ a {
 }
 
 #company-profil-information-container {
-  flex: 1 1 auto;
-  font-weight: 300;
-  // padding: 15px;
+  // flex: 1 1 auto;
+  // font-weight: 300;
+  // // padding: 15px;
   // display: flex;
   // flex-flow: column;
-  #presentation-profil-entreprise {
-    height: 34%;
-    margin: 0px 25px;
-    font-size: 15px;
+  // justify-content: space-between;
+}
+
+#information-container-row{
+  margin: 0;
+  height: 69px;
+  font-weight: 300;
+  .presentation-profil-entreprise {
+    padding: 0 0 0 7px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    p{ margin: 0; }
+    overflow: scroll;
   }
   .preuve-sociale-pousse {
-    height: 66%;
-    padding: 25px 0;
+    padding: 5px 0 0 0;
     display: flex;
     flex-flow: column;
     align-items: center;
     justify-content: space-around;
     p {
       margin: 0px;
-      padding: 10px 0px;
+      font-size: 10px;
     }
   }
-
 }
 
+
+
 .bouton-je-connais{
-  padding: 10px 25px;
+  padding: 5px 15px;
   border-radius: 5px;
   color: white;
-  background-color: rgba(104, 210, 169, 0.75);
+  background-color: rgba(0, 0, 0, 0.2);
   filter: drop-shadow(-3px 3px 3px rgba(0, 0, 0, 0.1));
   border-style: none;
   font-weight: 300;
   &:hover{
-    background-color: rgba(104, 210, 169, 1);
+    background-color: rgba(104, 210, 169, .7);
     filter: drop-shadow(-1px 1px 1px rgba(0, 0, 0, 0.1));
     text-decoration: none;
     color: white;
+  }
+  &:active{
+    transform: scale(0.97);
+    filter: drop-shadow(-0px 0px 0px rgba(0, 0, 0, 0.1));
+    background-color: rgba(104, 210, 169, 1);
   }
 }
 
 .bouton-je-ne-connais{
-  padding: 10px 25px;
+  padding: 5px 15px;
   border-radius: 5px;
   color: white;
-  background-color: rgba(121, 88, 159, 0.5);
+  background-color: rgba(104, 210, 169, 0.85);
   filter: drop-shadow(-3px 3px 3px rgba(0, 0, 0, 0.1));
   border-style: none;
   font-weight: 300;
   &:hover{
-    background-color: rgba(121, 88, 159, 0.75);
+    background-color: rgba(0, 0, 0, 0.05);
     filter: drop-shadow(-1px 1px 1px rgba(0, 0, 0, 0.1));
     text-decoration: none;
     color: white;
   }
+  &:active{
+    transform: scale(0.97);
+    filter: drop-shadow(-0px 0px 0px rgba(0, 0, 0, 0.1));
+    background-color: rgba(0, 0, 0, 0.25);
+  }
 }
+
+
+.home-company-publication{
+  flex: 1 1 auto;
+  // height: 39vh;
+  box-shadow: inset 0px 3px 5px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.home-company-publications {
+  height: 100%;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  // padding: 0 20px;
+  overflow: scroll;
+}
+
+.last-company-profil-row{
+  width: 100%;
+  margin: 0;
+}
+.publication-profil-input{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+.create-publication{
+  width: 100%;
+  margin: 5px 0 10px 0;
+  input{
+    border-radius: 5px;
+    opacity: 0.7;
+    font-size: 15px;
+    margin: 0;
+  }
+  .form-group{
+    margin: 0px;
+  }
+  .major-publication-input{
+    font-size: 12px;
+    padding-left: 0;
+    font-weight: 300;
+    opacity: .7;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    input{
+      position: absolute;
+      top: -6px;
+      right: 15px;
+    }
+    p{
+      margin: 0;
+      width: 100%;
+    }
+  }
+}
+
