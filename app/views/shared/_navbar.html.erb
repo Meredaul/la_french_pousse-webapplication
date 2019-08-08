@@ -18,8 +18,10 @@
             <% case current_user.participations.count %>
             <% when 0 %>
             <% when 1 %>
-              <%= image_tag "pousse.png", style: "width: 25px;" %>
-              <h6>Ma Pousse</h6>
+              <%= link_to company_path(current_user.companies.first), class:"flexalign dropdown-item" do %>
+                <%= image_tag "pousse.png", style: "width: 25px;" %>
+                <h6>Ma Pousse</h6>
+              <% end %>
             <% else %>
               <div class="dropdown">
                 <a href="#" role="" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -30,10 +32,6 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuButton">
                   <% current_user.companies.each do |company| %>
-                    <!-- <a class="flexalign dropdown-item" data-toggle="modal" data-target="#modal-modification-company-<%= company.id %>" >
-                      <%#= image_tag "pousse.png", style: "width: 15px;" %>
-                      <p style="margin: 0;"><%= company.nom %></p>
-                    </a> -->
                     <%= link_to company_path(company), class:"flexalign dropdown-item" do %>
                       <%= image_tag "pousse.png", style: "width: 15px;" %>
                       <p style="margin: 0;"><%= company.nom %></p>
