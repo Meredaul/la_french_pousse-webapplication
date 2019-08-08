@@ -88,6 +88,7 @@
 
 <% content_for :after_js do %>
   <script>
+  focusPublicationInput();
   <% @companies_around.each do |company| %>
       scrollLastPublicationIntoView();
       // focusOnWrittingMessage();

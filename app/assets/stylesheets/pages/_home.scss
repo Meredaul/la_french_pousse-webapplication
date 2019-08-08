@@ -394,25 +394,31 @@ a {
     font-size: 15px;
     margin: 0;
   }
-
-  .major-publication-input{
+  input:focus{
+    box-shadow: none;
+    border-color: rgba(121, 88, 159, 1);
+  }
+  .major-publication-input-title{
+    width: 30%;
     font-size: 12px;
-    padding-left: 0;
     font-weight: 300;
     opacity: .7;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
+    p{
+      margin: 0;
+    }
+  }
+  .major-publication-input{
+    width: 0;
     position: relative;
     input{
       position: absolute;
-      top: -6px;
-      right: 15px;
+      top: 12px;
+      right: 9px;
     }
-    p{
-      margin: 0;
-      width: 100%;
-    }
+
   }
 }
 
