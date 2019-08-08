@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   after_create :building_founder_conversation
 
+
   acts_as_reader
   # def self.reader_scope
   #   where(is_admin: true)
@@ -53,6 +54,11 @@ class User < ApplicationRecord
   end
 
   private
+
+  @@repositionnements = [{lieu: "Les Monts d'Or Lyonnais", lat: 45.834232, long: 4.810957}]
+  def self.repositionnements_globaux
+    @@repositionnements
+  end
 
   def building_founder_conversation
     self.founder_conversation = FounderConversation.create
