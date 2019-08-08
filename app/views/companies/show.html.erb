@@ -1,15 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<p>patati patata</p>
-
-<div class="row">
-  <div class="col-5">
-
+<div class="row corps-gestion">
+  <div class="col-5 modification-pousse-gestion">
+    <h5 class="modification-gestion-title">Modifier Votre Pousse</h5>
+    <%= render partial: 'companies/form', locals: { submittext: "Modifier Ma Pousse", company: @company, suffixe: "gestion" } %>
   </div>
-  <div class="col-7">
-    <div class="gestion-company-partiel container">
-      <%= render @company %>
-    </div>
+  <div class="col-7 gestion-company-partiel">
+    <%= render @company %>
   </div>
 </div>
 

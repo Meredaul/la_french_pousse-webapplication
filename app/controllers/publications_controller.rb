@@ -11,11 +11,15 @@ class PublicationsController < ApplicationController
         format.js { render action: 'create.js.erb' }
       end
       if @publication.major_publication
-        number_of_previous = Publication.all.count - 1
-        Publication.all[0...number_of_previous].select(&:visible).each do |publication|
+        concerned_publications = Publication.select{ |publication| publication.visible && publication.pouss == @publication.pouss && publication != @publication}
+        # & publication.pouss == @publication.pouss
+        concerned_publications.each do |publication|
           publication.update(visible: false)
         end
+      # else
+      #   @publication.update(major_publication: false)
       end
+
     else
       respond_to do |format|
         # format.html { render "founder_conversations/show" }
@@ -30,6 +34,6 @@ class PublicationsController < ApplicationController
   private
 
   def publication_params
-    params.require(:publication).permit(:content)
+    params.require(:publication).permit(:content, :major_publication)
   end
 end

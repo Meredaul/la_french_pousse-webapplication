@@ -1,31 +1,54 @@
 if (document.querySelector('.company_photo_cache')){
 document.querySelector('.company_photo_cache').classList.add('d-none');
 }
-if (document.querySelector('.company_preuve_cache')){
-  document.querySelector('.company_preuve_cache').classList.add('d-none');
-}
+// if (document.querySelector('.company_preuve_cache')){
+//   document.querySelector('.company_preuve_cache').classList.add('d-none');
+// }
 
 
-
-const displayPreview = (input) => {
+// // NOUVELLE POUSSE
+const displayPreviewCreation = (input) => {
   if (input.files && input.files[0]) {
     const reader = new FileReader();
     reader.onload = (event) => {
-      document.getElementById('photo-preview').src = event.currentTarget.result;
+      document.getElementById('photo-preview-creation').src = event.currentTarget.result;
     }
     reader.readAsDataURL(input.files[0])
-    document.querySelector('#company-photo-box .form-group').classList.add('d-none');
-    document.getElementById('photo-preview').classList.remove('d-none');
+    document.querySelector('#home-pouss-modal-body #company-photo-box .form-group').classList.add('d-none');
+    document.getElementById('photo-preview-creation').classList.remove('d-none');
   }
 }
-const input = document.getElementById('upload-company-photo');
-if (input) {
+const inputCreation = document.querySelector('#upload-company-photo-creation');
+console.log(inputCreation);
+if (inputCreation) {
   // we add a listener to know when a new picture is uploaded
-  input.addEventListener('change', () => {
+  inputCreation.addEventListener('change', () => {
     // we call the displayPreview function (who retrieve the image url and display it)
-    displayPreview(input);
+    displayPreviewCreation(inputCreation);
   })
 }
+// GESTION POUSSE
+const displayPreviewGestion = (input) => {
+  if (input.files && input.files[0]) {
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      document.getElementById('photo-preview-gestion').src = event.currentTarget.result;
+    }
+    reader.readAsDataURL(input.files[0])
+    document.querySelector('.corps-gestion #company-photo-box .form-group').classList.add('d-none');
+    document.getElementById('photo-preview-gestion').classList.remove('d-none');
+  }
+}
+const inputGestion = document.querySelector('#upload-company-photo-gestion');
+console.log(inputGestion);
+if (inputGestion) {
+  // we add a listener to know when a new picture is uploaded
+  inputGestion.addEventListener('change', () => {
+    // we call the displayPreview function (who retrieve the image url and display it)
+    displayPreviewGestion(inputGestion);
+  })
+}
+
 
 
 // CATEGORY SELECTION

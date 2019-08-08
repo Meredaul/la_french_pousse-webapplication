@@ -127,7 +127,7 @@
         </div>
         <div class="modal-body" id="home-pouss-modal-body">
           <% @company = Company.new { @categories = Category.all.map { |category| [category.name, category.id]} } %>
-          <%= render 'companies/form', company: @company %>
+          <%= render 'companies/form', company: @company, submittext: "Créer Mon Entreprise", suffixe: "creation" %>
         </div>
         <div class="modal-footer">
           <%= simple_form_for(Category.new, remote: true) do |f| %>
@@ -143,9 +143,9 @@
   </div>
 
 
-  <% current_user.companies.each do |company| %>
+  <%# current_user.companies.each do |company| %>
     <!-- Modal Copie Bricolage Pour Trouver Comment l'Activer À Travers Mes Pousses-->
-    <div class="modal fade" id="modal-modification-company-<%= company.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- <div class="modal fade" id="modal-modification-company-<%#= company.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -155,12 +155,12 @@
             </button>
           </div>
           <div class="modal-body" id="home-pouss-modification-modal-body">
-            <%= render 'companies/form', company: company %>
+            <%#= render 'companies/form', company: company %>
           </div>
         </div>
       </div>
-    </div>
-  <% end %>
+    </div> -->
+  <%# end %>
 
 
   <div class="modal fade" id="founder-chat-box" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

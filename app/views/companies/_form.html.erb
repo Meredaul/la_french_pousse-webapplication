@@ -12,8 +12,13 @@
 
       <div class="col-7">
         <div id="company-photo-box">
-          <%= f.input :photo, input_html: { class: 'd-none', id: 'upload-company-photo' }, label_html: { id: 'company-photo-upload' }, label: "📷" %>
-          <%= image_tag "", height: "100px", class: "d-none", id: "photo-preview" %>
+          <% if company.photo %>
+            <% image_path = cl_image_path("#{company.photo}") %>
+            <%= f.input :photo, input_html: { class: 'd-none', id: "upload-company-photo-#{suffixe}" }, label_html: { id: 'company-photo-upload', style: "background-image: url(#{image_path}) " }, label: "📷" %>
+          <% else %>
+            <%= f.input :photo, input_html: { class: 'd-none', id: "upload-company-photo-#{suffixe}" }, label_html: { id: 'company-photo-upload' }, label: "📷" %>
+          <% end %>
+          <%= image_tag "", height: "100px", class: "d-none ", id: "photo-preview-#{suffixe}" %>
         </div>
         <%= f.input :photo_cache, as: :hidden %>
       </div>
@@ -24,10 +29,16 @@
       <!-- <h6 id="category-choices-label">Categorie :</h6> -->
       <% Category.where(validated: true).each do |category| %>
         <input type="checkbox" class="d-none" value="<%= category.id %>" name="company[category_id]" id="post_category_ids_<%= category.id %>">
-        <!-- post[category_ids][] -->
-        <label for="post_category_ids_<%= category.id %>" class="category-choice">
-          <%= category.name %>
-        </label>
+        <% if company.category && category == company.category %>
+          <label for="post_category_ids_<%= category.id %>" class="category-choice active">
+            <%= category.name %>
+          </label>
+        <% else %>
+          <label for="post_category_ids_<%= category.id %>" class="category-choice">
+            <%= category.name %>
+          </label>
+        <% end %>
+
       <% end %>
     </div>
 
@@ -45,8 +56,9 @@
     <%= f.text_area :presentation, label: false, required: true, autofocus: true, placeholder: "Présentation", class: "company-input", id: "company-presentation-input" %>
   </div>
 
+
   <div class="form-actions bouton-acces-lfp" style="display: flex; justify-content: space-around;">
-    <%= f.button :submit, value: "Créer Mon Entreprise" %>
+    <%= f.button :submit, value: submittext %>
   </div>
 <% end %>
 
