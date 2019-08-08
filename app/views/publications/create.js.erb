@@ -5,6 +5,7 @@ console.log('<%= @publication.major_publication %>');
   //
 <% else %>
   var publicationsContainer = document.querySelector('#profile-pousse-homepage .home-company-publications');
+  var gestionPublicationsContainer = document.querySelector('.corps-gestion .home-company-publications');
   if (publicationsContainer){
     if ('<%= @publication.major_publication %>' == 'true'){
       publicationsContainer.innerHTML = '<%= j render "publication", publication: @publication, user_is_publication_author: true, author_is_company_admin: @publication.pouss.users.include?(@publication.user), publication_is_major: @publication.major_publication %>'
@@ -21,20 +22,33 @@ console.log('<%= @publication.major_publication %>');
       majorPublicationInput.checked = false;
       scrollLastPublicationIntoView();
     }
-  }
-  else {
-    console.log('pousse passage possible');
+  }else if (gestionPublicationsContainer){
+    console.log('youhou');
+    if ('<%= @publication.major_publication %>' == 'true'){
+      gestionPublicationsContainer.innerHTML = '<%= j render "publication", publication: @publication, user_is_publication_author: true, author_is_company_admin: @publication.pouss.users.include?(@publication.user), publication_is_major: @publication.major_publication %>'
+      var contentPublicationInput = document.querySelector('#publication_content');
+      contentPublicationInput.value = '';
+      var majorPublicationInput = document.querySelector('#publication_major_publication');
+      majorPublicationInput.checked = false;
+      scrollLastPublicationIntoView();
+    } else{
+      console.log('non major');
+      gestionPublicationsContainer.insertAdjacentHTML('beforeend', '<%= j render "publication", publication: @publication, user_is_publication_author: true, author_is_company_admin: @publication.pouss.users.include?(@publication.user), publication_is_major: @publication.major_publication %>');
+      var contentPublicationInput = document.querySelector('#publication_content');
+      contentPublicationInput.value = '';
+      var majorPublicationInput = document.querySelector('#publication_major_publication');
+      majorPublicationInput.checked = false;
+      scrollLastPublicationIntoView();
+    }
+  }else {
     var poussePublicationsContainer = document.querySelector('[data-company-id="<%= @publication.pouss.id %>"] .pousse-publications');
     if (poussePublicationsContainer){
-      console.log('pousse passage ');
       if ('<%= @publication.major_publication %>' == 'true'){
-        console.log('pousse passage major');
         poussePublicationsContainer.innerHTML = '<%= j render "publication", publication: @publication, user_is_publication_author: true, author_is_company_admin: @publication.pouss.users.include?(@publication.user), publication_is_major: @publication.major_publication %>';
         var contentPublicationInput = document.querySelector('[data-company-id="<%= @publication.pouss.id %>"] .publication_content .form-control');
         contentPublicationInput.value = '';
         pousseScrollLastPublicationIntoView(<%= @publication.pouss.id %>);
       }else{
-        console.log('pousse passage non major');
         poussePublicationsContainer.insertAdjacentHTML('beforeend', '<%= j render "publication", publication: @publication, user_is_publication_author: true, author_is_company_admin: @publication.pouss.users.include?(@publication.user), publication_is_major: @publication.major_publication %>');
         var contentPublicationInput = document.querySelector('[data-company-id="<%= @publication.pouss.id %>"] .publication_content .form-control');
         contentPublicationInput.value = '';
