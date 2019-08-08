@@ -1,4 +1,7 @@
 class Company < ApplicationRecord
+  # after_create :building_pousse_publication
+  # has_one :pousse_publication, dependent: :destroy
+
   has_many :publications, as: :pouss
 
   has_many :participations, as: :pouss
@@ -21,5 +24,12 @@ class Company < ApplicationRecord
   validates :preuve, presence: true
 
   after_validation :geocode, if: :will_save_change_to_address?
+
+
+  private
+
+  def building_pousse_publication
+    self.pousse_publication = PoussePublication.create
+  end
 end
 

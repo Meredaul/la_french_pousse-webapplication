@@ -194,7 +194,7 @@
 
 
 
-<% content_for :after_js do %>
+<% content_for :navbar_js do %>
   <script>
     focusOnWrittingMessage();
     App['founder_conversation_<%= founder_conversation.id %>'] = App.cable.subscriptions.create(

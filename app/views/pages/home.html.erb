@@ -85,3 +85,30 @@
   <% end %>
 </div>
 
+
+<% content_for :after_js do %>
+  <script>
+  <% @companies_around.each do |company| %>
+      scrollLastPublicationIntoView();
+      // focusOnWrittingMessage();
+      App['pousse_publication_<%= company.id %>'] = App.cable.subscriptions.create(
+        { channel: 'PoussePublicationChannel', pousse_publication_id: <%= company.id %> },
+        {
+          received: (data) => {
+            console.log(data);
+            if (data.current_user_id !== <%= current_user.id %> & data.publications_pouss.id == <%= company.id %>) {
+              console.log(data.publications_pouss.id);
+              const publicationsContainer = document.querySelector('[data-company-id="<%= company.id %>"] .home-company-publications');
+              if(publicationsContainer){
+                publicationsContainer.insertAdjacentHTML('beforeend', data.publication_partial);
+                scrollLastPublicationIntoView();
+              }
+            }
+          }
+        }
+      )
+
+  <% end %>
+  </script>
+<% end %>
+
