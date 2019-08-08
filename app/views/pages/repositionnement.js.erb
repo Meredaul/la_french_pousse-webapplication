@@ -1,8 +1,20 @@
+console.log('repositionnement action !')
+
+var mapSection = document.getElementById('map');
+mapSection.dataset.center_address_marker="<%= @personnal_address_marker.to_json %>"
+mapSection.dataset.company_around_markers="<%= @companies_around_markers.to_json %>"
+
+
+// <%= javascript_pack_tag 'application' %>
+
+
+// import 'mapbox-gl/dist/mapbox-gl.css';
+// import '../javascript/plugins/init_mapbox'
+
+
+
 import mapboxgl from 'mapbox-gl'
-
-const profilePousseHomepage = document.getElementById('profile_pousse_homepage');
-
-const initMapbox = () => {
+const repositionnedMapbox = () => {
   const mapElement = document.getElementById('map');
 
   const fitMapToMarkers = (map, markers, center) => {
@@ -22,7 +34,6 @@ const initMapbox = () => {
     const map = new mapboxgl.Map( {
       container: 'map',
       style: 'mapbox://styles/mapbox/streets-v10',
-      // style: 'mapbox://styles/mapbox/outdoors-v11',
       zoom: 3,
       attributionControl: false
     });
@@ -83,4 +94,4 @@ const initMapbox = () => {
   }
 };
 
-export { initMapbox };
+repositionnedMapbox();

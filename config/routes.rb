@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   # il faut juste améliorer 'users/sign_in view and refocalisant, controllant les verts etc'
 
   get '/admin', to: 'pages#admin', as: 'admin'
+  get '/repositionnement', to: 'pages#repositionnement', as: 'repositionnement'
 
   mount ActionCable.server => "/cable"
 

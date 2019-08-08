@@ -1,7 +1,8 @@
 class FounderConversationsController < ApplicationController
+  before_action :set_founder_conversation_id, only: [:update]
 
   def show
-    @founder_conversation = FounderConversation.includes(messages: :user).find(params[:id])
+    # @founder_conversation = FounderConversation.includes(messages: :user).find(params[:id])
   end
 
   def index
@@ -11,7 +12,7 @@ class FounderConversationsController < ApplicationController
   end
 
   def update
-    @messages_unread = Message.where(founder_conversation_id: params[:id]).unread_by(current_user)
+    @messages_unread = Message.where(founder_conversation_id: @founder_conversation_id).unread_by(current_user)
     @messages_unread.each do |message_unread|
       message_unread.mark_as_read! for: current_user
     end
@@ -19,5 +20,11 @@ class FounderConversationsController < ApplicationController
     respond_to do |format|
       format.js { render action: 'update.js.erb' }
     end
+  end
+
+  private
+
+  def set_founder_conversation_id
+    @founder_conversation_id = params[:id]
   end
 end

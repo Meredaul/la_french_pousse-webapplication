@@ -8,3 +8,4 @@
 //= require navbar
 //= require conversations_citoyens
 //= require publication_scroll
+//= require repositionnement

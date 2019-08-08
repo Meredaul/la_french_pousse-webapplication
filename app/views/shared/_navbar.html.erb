@@ -73,6 +73,36 @@
           </div>
         <%# end %>
       </div> -->
+      <div class="dropdown lfp-navbar-element" id="repositionnement">
+        <a href="#" role="" id="dropdownMenuButtonDecouverte" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <div class="repositionnement-box flexalign">
+            <%= image_tag "repositionnement.png", style: "width: 25px;" %>
+            <h6 class="">Découverte</h6>
+          </div>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButtonDecouverte">
+
+          <%= link_to authenticated_root_path, class:"flexalign dropdown-item" do %><!-- , remote: true -->
+              <%#= image_tag "pousse.png", style: "width: 15px;" %>
+            <p style="margin: 0;" class="reposition" > Mes Environs </p><!-- data-lat="<%#= position[:lat] %>" data-long="<%#= position[:long] %>" -->
+          <% end %>
+
+          <% current_user.companies.each do |company| %>
+            <%= link_to authenticated_root_path(lat: company.latitude, long: company.longitude), class:"flexalign dropdown-item" do %><!-- , remote: true -->
+              <%#= image_tag "pousse.png", style: "width: 15px;" %>
+              <p style="margin: 0;" class="reposition" ><%= company.nom %></p><!-- data-lat="<%#= position[:lat] %>" data-long="<%#= position[:long] %>" -->
+            <% end %>
+          <% end %>
+
+          <% User.repositionnements_globaux.each do |position| %>
+            <%= link_to authenticated_root_path(lat: position[:lat], long: position[:long]), class:"flexalign dropdown-item" do %><!-- , remote: true -->
+              <%#= image_tag "pousse.png", style: "width: 15px;" %>
+              <p style="margin: 0;" class="reposition" ><%= position[:lieu] %></p><!-- data-lat="<%#= position[:lat] %>" data-long="<%#= position[:long] %>" -->
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+
       <div id="profil-citoyen" >
         <% if current_user.present? %>
           <% if current_user.photo.present? %>
@@ -192,23 +222,23 @@
 
 
 
-<% content_for :navbar_js do %>
-  <script>
-    focusOnWrittingMessage();
-    App['founder_conversation_<%= founder_conversation.id %>'] = App.cable.subscriptions.create(
-      { channel: 'FounderConversationsChannel', founder_conversation_id: <%= founder_conversation.id %> },
-      {
-        received: (data) => {
-          if (data.current_user_id !== <%= current_user.id %>) {
-            console.log('passed');
-            const messagesContainer = document.querySelector('.messages');
-            messagesContainer.insertAdjacentHTML('beforeend', data.message_partial);
-            scrollLastMessageIntoView();
+  <% content_for :navbar_js do %>
+    <script>
+      focusOnWrittingMessage();
+      App['founder_conversation_<%= founder_conversation.id %>'] = App.cable.subscriptions.create(
+        { channel: 'FounderConversationsChannel', founder_conversation_id: <%= founder_conversation.id %> },
+        {
+          received: (data) => {
+            if (data.current_user_id !== <%= current_user.id %>) {
+              console.log('passed');
+              const messagesContainer = document.querySelector('.messages');
+              messagesContainer.insertAdjacentHTML('beforeend', data.message_partial);
+              scrollLastMessageIntoView();
+            }
           }
         }
-      }
-    )
-  </script>
-<% end %>
+      )
+    </script>
+  <% end %>
 
 <% end %>
