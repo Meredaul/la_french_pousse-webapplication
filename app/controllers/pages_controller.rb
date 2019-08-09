@@ -20,7 +20,7 @@ class PagesController < ApplicationController
       }
     end
 
-    maximum_passages = @companies_around_markers.map{|c| c[:passages_counter]}.max
+    maximum_passages = @companies_around_markers.map{|c| c[:passages_counter]}.max + 1
     if maximum_passages == 0
       maximum_passages = 1
     end
