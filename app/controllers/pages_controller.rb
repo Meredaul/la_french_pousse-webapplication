@@ -15,9 +15,13 @@ class PagesController < ApplicationController
         infoWindow: render_to_string(partial: "infoWindow", locals: {company: company}),
         # image_url: helpers.asset_url('logo.png'),
         icon_url: helpers.asset_url("#{company.category.icon}"),
-        company_id: company.id
+        company_id: company.id,
+        passages_counter: company.company_passages.count
       }
     end
+
+    maximum_passages = @companies_around_markers.map{|c| c[:passages_counter]}.max
+    @personnal_address_marker << {maximum_passages: maximum_passages}
 
     @random_company_around = @companies_around.sample
   end
