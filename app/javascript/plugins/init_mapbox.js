@@ -50,9 +50,9 @@ const initMapbox = () => {
       element.style.backgroundRepeat = 'no-repeat';
       // element.style.width = '28px';
 
-      element.style.width = `${(35 * marker.passages_counter / center_address_marker[1].maximum_passages).toFixed(1)}px`;
+      element.style.width = `${(35 * (.1 + marker.passages_counter / center_address_marker[1].maximum_passages)).toFixed(1)}px`;
       // element.style.height = '28px';
-      element.style.height = `${(35 * marker.passages_counter / center_address_marker[1].maximum_passages).toFixed(1)}px`;
+      element.style.height = `${(35 * (.1 + marker.passages_counter / center_address_marker[1].maximum_passages)).toFixed(1)}px`;
       element.style.filter = 'drop-shadow(-2px 3px 1px rgba(0, 0, 0, 0.1))';
       element.dataset.company_id = `${marker.company_id}`;
       element.addEventListener('mouseover', (event)=>{
