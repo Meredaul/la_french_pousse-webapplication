@@ -21,6 +21,9 @@ class PagesController < ApplicationController
     end
 
     maximum_passages = @companies_around_markers.map{|c| c[:passages_counter]}.max
+    if maximum_passages == 0
+      maximum_passages = 1
+    end
     @personnal_address_marker << {maximum_passages: maximum_passages}
 
     @random_company_around = @companies_around.sample
