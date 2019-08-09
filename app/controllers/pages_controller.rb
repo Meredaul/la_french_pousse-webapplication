@@ -16,7 +16,7 @@ class PagesController < ApplicationController
         # image_url: helpers.asset_url('logo.png'),
         icon_url: helpers.asset_url("#{company.category.icon}"),
         company_id: company.id,
-        passages_counter: company.company_passages.count
+        passages_counter: company.company_passages.count + 1
       }
     end
 
