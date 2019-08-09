@@ -2,7 +2,7 @@ function focusPublicationInput() {
   console.log('focus publication input');
 
   var publicationInput = document.getElementById('publication_content');
-  if (publicationInput !== undefined) {
+  if (publicationInput ) {//!== undefined
     publicationInput.focus();
   }
 }

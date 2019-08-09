@@ -18,9 +18,11 @@
             <% case current_user.participations.count %>
             <% when 0 %>
             <% when 1 %>
-              <%= link_to company_path(current_user.companies.first), class:"flexalign dropdown-item" do %>
-                <%= image_tag "pousse.png", style: "width: 25px;" %>
-                <h6>Ma Pousse</h6>
+              <%= link_to company_path(current_user.companies.first), class:"" do %>
+                <div class="flexalign">
+                  <%= image_tag "pousse.png", style: "width: 25px;" %>
+                  <h6>Ma Pousse</h6>
+                </div>
               <% end %>
             <% else %>
               <div class="dropdown">
