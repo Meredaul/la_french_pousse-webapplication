@@ -10,7 +10,7 @@ class User < ApplicationRecord
   has_one :founder_conversation, dependent: :destroy
 
   has_many :publications
-  has_many :team_memberships
+  has_many :team_memberships, dependent: :destroy
   has_many :participations
   has_many :companies, through: :participations, source: :pouss, source_type: 'Company'
 
