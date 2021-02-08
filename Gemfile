@@ -5,7 +5,7 @@ gem 'unread'
 
 gem 'geocoder'
 
-gem 'carrierwave', '~> 1.2'
+gem 'carrierwave', '~> 1.3'
 gem 'cloudinary', '~> 1.9.1'
 
 gem 'dotenv-rails', groups: [:development, :test]
